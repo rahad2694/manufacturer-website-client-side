@@ -7,7 +7,7 @@ import Spinners from '../../shared/Spinners';
 const Purchase = () => {
     const { id } = useParams();
     const { isLoading, error, data: itemInfo } = useQuery('toolsData', () =>
-        fetch(`http://localhost:5000/item/${id}`).then(res =>
+        fetch(`https://tools-manufacturer-allumin.herokuapp.com/item/${id}`).then(res =>
             res.json()
         )
     )
