@@ -2,7 +2,7 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blog from './pages/Blogs/Blog';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import NotFound from './pages/shared/NotFound';
 import TopNav from './pages/shared/TopNav';
 
