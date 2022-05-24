@@ -1,0 +1,50 @@
+[
+    {
+        "img": "https://i.ibb.co/RzgHP4J/hammer.jpg",
+        "title": "Hammer",
+        "description": "This Exclusive hand tool consists of a solid head set crosswise on a handle and used for pounding.",
+        "available": 200,
+        "price": 150,
+        "moq": 20
+    },
+    {
+        "img": "https://i.ibb.co/8P3YpCJ/grip-Plier.jpg",
+        "title": "Locking Pliers",
+        "description": "This plier can be locked into position, using an over-center cam action.",
+        "available": 150,
+        "price": 250,
+        "moq": 10
+    },
+    {
+        "img": "https://i.ibb.co/WnQhYrw/drill-Machine.jpg",
+        "title": "Drilling Machine",
+        "description": "A powerful tool used to cut a round hole into or through metal, plastic, wood, or other solid materials throug turning and a dvancing  rotary drill bits into a workpiece",
+        "available": 100,
+        "price": 350,
+        "moq": 5
+    },
+    {
+        "img": "https://i.ibb.co/x8bRt9k/cutPlier.jpg",
+        "title": "Cut Pliers",
+        "description": "Diagonal cutting pliers are used for cutting wire and small pins in areas that cannot be reached by larger cutting tools",
+        "available": 250,
+        "price": 180,
+        "moq": 15
+    },
+    {
+        "img": "https://i.ibb.co/FnKgYFD/wrench.jpg",
+        "title": "Wrench",
+        "description": "It consists of a stout lever with a notch at one or both ends for gripping the bolt or nut in such a way that it can be twisted by a pull on the wrench at right angles to the axes of the lever and the bolt or nut.",
+        "available": 200,
+        "price": 280,
+        "moq": 10
+    },
+    {
+        "img": "https://i.ibb.co/nrSD76C/plier.jpg",
+        "title": "Pliers",
+        "description": "This is a hand-operated tool for holding and gripping small articles or for bending and cutting wire.",
+        "available": 300,
+        "price": 100,
+        "moq": 20
+    }
+]
