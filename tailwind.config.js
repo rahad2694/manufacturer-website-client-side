@@ -1,5 +1,10 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
+  theme: {
+    fontFamily: {
+      'title': ["Brush Script MT", "Brush Script Std", "cursive"]
+    }
+  },
   daisyui: {
     themes: [
       {
@@ -15,5 +20,5 @@ module.exports = {
       "cupcake",
     ],
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui", "tw-elements/dist/plugin")],
 }
