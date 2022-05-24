@@ -9,7 +9,7 @@ const TopNav = () => {
     const [user] = useAuthState(auth);
     // console.log(user);
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 sticky top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -36,7 +36,7 @@ const TopNav = () => {
                     <li><Link to="/about">About</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end mr-3">
                 {user?.uid? <button onClick={() => {
                             signOut(auth);
                             toast.success('Successfully Logged Out', { id: 'logout' });
