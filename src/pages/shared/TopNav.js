@@ -1,7 +1,13 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const TopNav = () => {
+    const [user] = useAuthState(auth);
+    // console.log(user);
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -27,11 +33,14 @@ const TopNav = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/login">About</Link></li>
+                    <li><Link to="/about">About</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login" className="btn">Login</Link>
+                {user?.uid? <button onClick={() => {
+                            signOut(auth);
+                            toast.success('Successfully Logged Out', { id: 'logout' });
+                        }} className="btn btn-sm">Logout</button>: <Link to="/login" className="btn btn-sm">Login</Link>}
             </div>
         </div>
     );
