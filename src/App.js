@@ -4,6 +4,7 @@ import './App.css';
 import Blog from './pages/Blogs/Blog';
 import Home from './pages/Home/Home';
 import Items from './pages/Home/Items/Items';
+import Purchase from './pages/Home/Purchase/Purchase';
 import Login from './pages/Login/Login';
 import RequireAuth from './pages/Login/RequireAuth';
 import SignUp from './pages/Login/SignUp/SignUp';
@@ -24,6 +25,11 @@ function App() {
         <Route path='/items' element={
           <RequireAuth>
             <Items></Items>
+          </RequireAuth>
+        }></Route>
+        <Route path='/purchase/:id' element={
+          <RequireAuth>
+            <Purchase></Purchase>
           </RequireAuth>
         }></Route>
 

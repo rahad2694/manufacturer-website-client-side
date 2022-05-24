@@ -19,12 +19,12 @@ const Tools = () => {
         console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
-    console.log(tools);
+    // console.log(tools);
     return (
         <div className='my-12 mx-12'>
             <div className='p-4 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-8'>
                 {
-                    tools.map(tool => <Tool tool={tool}></Tool>)
+                    tools?.map(tool => <Tool key={tool._id} tool={tool}></Tool>)
                 }
             </div>
             <Link className='btn mb-5 mt-10 text-white' to="/items">See More Items</Link>
