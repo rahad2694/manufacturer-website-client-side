@@ -40,7 +40,7 @@ const TopNav = () => {
                 {user?.uid? <button onClick={() => {
                             signOut(auth);
                             toast.success('Successfully Logged Out', { id: 'logout' });
-                        }} className="btn btn-sm">Logout</button>: <Link to="/login" className="btn btn-sm">Login</Link>}
+                        }} className="btn btn-sm text-white">Logout</button>: <Link to="/login" className="btn btn-sm text-white">Login</Link>}
             </div>
         </div>
     );

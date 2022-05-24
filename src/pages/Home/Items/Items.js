@@ -2,13 +2,13 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import Spinners from '../shared/Spinners';
-import Tool from './Tool';
+import Spinners from '../../shared/Spinners';
+import Tool from '../Tool';
 
 
-const Tools = () => {
+const Items = () => {
     const { isLoading, error, data: tools } = useQuery('toolsData', () =>
-        fetch('http://localhost:5000/tools').then(res =>
+        fetch('http://localhost:5000/alltools').then(res =>
             res.json()
         )
     )
@@ -19,17 +19,17 @@ const Tools = () => {
         console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
-    console.log(tools);
     return (
         <div className='my-12 mx-12'>
+            <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>Our Products</h1>
             <div className='p-4 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-8'>
                 {
                     tools.map(tool => <Tool tool={tool}></Tool>)
                 }
             </div>
-            <Link className='btn mb-5 mt-10 text-white' to="/items">See More Items</Link>
+            <Link className='btn mb-5 mt-10 text-white' to="/">Back to Home Page</Link>
         </div>
     );
 };
 
-export default Tools;
+export default Items;
