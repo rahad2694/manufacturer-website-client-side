@@ -11,7 +11,7 @@ const PurchaseSteps = () => {
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-bold">Simple Steps !</h1>
+                        <h1 className="mb-5 text-5xl font-bold">Follow the Simple Steps !</h1>
                         <ul className="steps steps-vertical">
                             <li className="step step-primary">Login / Register</li>
                             <li className="step step-primary">Choose tools</li>
