@@ -27,7 +27,7 @@ const Login = () => {
         if (emailUser || googleUser) {
             console.log('I am in')
             let user = emailUser || googleUser;
-            const url = `http://localhost:5000/login`;
+            const url = `https://tools-manufacturer-allumin.herokuapp.com/login`;
             fetch(url, {
                 method: 'POST',
                 headers: {
