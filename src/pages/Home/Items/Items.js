@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
@@ -7,10 +7,15 @@ import Tool from '../Tool';
 
 
 const Items = () => {
-    const { isLoading, error, data: tools } = useQuery('toolsData', () =>
+    const [intervals, setIntervals] = useState(1000);
+    const { isLoading, error, data: tools } = useQuery(['allToolsData',intervals], () =>
         fetch('https://tools-manufacturer-allumin.herokuapp.com/alltools').then(res =>
             res.json()
-        )
+        ),
+        {
+            // Refetch the data every second
+            refetchInterval: intervals,
+        }
     )
     if (isLoading) {
         return <Spinners></Spinners>
