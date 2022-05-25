@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -24,8 +25,16 @@ const Purchase = () => {
             return;
         }
         toast.success(`${data.reqQty} pcs have been added in Order!`, { id: 'cart-success' });
-        toast.success(`Order Placed!`, { id: 'order-success' });
-        event.reset();
+        axios.post('http://localhost:5000/placeorder', data)
+            .then(function (response) {
+                console.log(response);
+                toast.success(`Order Placed!`, { id: 'order-success' });
+            })
+            .catch(function (error) {
+                console.log(error);
+                toast.error(`Error Placing Order!`, { id: 'order-error' });
+            });
+        // event.reset();
     };
     const { isLoading, error, data: itemInfo } = useQuery('toolsData', () =>
         fetch(`https://tools-manufacturer-allumin.herokuapp.com/item/${id}`).then(res =>
@@ -61,11 +70,11 @@ const Purchase = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text ml-8">Enter Required Qty:</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text ml-8">Enter Required Qty:</span>
                             </label>
-                            <input defaultValue={moq} {...register("reqQty", { required: true })} type="number" placeholder="Enter Required Qty" class="text-center input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
+                            <input defaultValue={moq} {...register("reqQty", { required: true })} type="number" placeholder="Enter Required Qty" className="text-center input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
                             {errors.reqQty?.type === 'required' && <p className='text-sm text-red-500 mb-1'>Quantity is required</p>}
                         </div>
                     </form>
@@ -74,35 +83,35 @@ const Purchase = () => {
                 <div className='border-2 p-5 rounded-lg md:ml-5 ml-2'>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text ml-8">Your Name:</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text ml-8">Your Name:</span>
                             </label>
-                            <input value={currentUser?.displayName} {...register("name", { required: true })} type="text" placeholder="Your Name" class="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
+                            <input value={currentUser?.displayName} {...register("name", { required: true })} type="text" placeholder="Your Name" className="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
                             {errors.name?.type === 'required' && <p className='text-sm text-red-500 mb-1'>Name is required</p>}
                         </div>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text ml-8">Your Email:</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text ml-8">Your Email:</span>
                             </label>
-                            <input value={currentUser?.email} {...register("email", { required: true })} type="text" placeholder="Your Email" class="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
+                            <input value={currentUser?.email} {...register("email", { required: true })} type="text" placeholder="Your Email" className="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
                             {errors.email?.type === 'required' && <p className='text-sm text-red-500 mb-1'>Email is required</p>}
                         </div>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text ml-8">Your Address:</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text ml-8">Your Address:</span>
                             </label>
-                            <input {...register("address", { required: true })} type="text" placeholder="Your Address" class="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
+                            <input {...register("address", { required: true })} type="text" placeholder="Your Address" className="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
                             {errors.address?.type === 'required' && <p className='text-sm text-red-500 mb-1'>Address is required</p>}
                         </div>
 
-                        <div class="form-control w-full max-w-xs">
-                            <label class="label">
-                                <span class="label-text ml-8">Your Phone Number:</span>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text ml-8">Your Phone Number:</span>
                             </label>
-                            <input {...register("phone", { required: true })} type="text" placeholder="Your Phone Number" class="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
+                            <input {...register("phone", { required: true })} type="text" placeholder="Your Phone Number" className="input input-bordered w-3/4 mx-auto md:w-full md:max-w-xs mb-3" />
                             {errors.phone?.type === 'required' && <p className='text-sm text-red-500 mb-1'>Phone Number is required</p>}
                         </div>
                         <input className="btn btn-primary" type="submit" value="Place Order" />
