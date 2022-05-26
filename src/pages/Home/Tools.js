@@ -67,7 +67,7 @@ const Tools = () => {
     }
     // console.log('data:',tools,'Loading now:',isLoading);
     return (
-        <div className='my-12 mx-12'>
+        <div className='my-12 lg:mx-12 md:mx-8 mx-5'>
             {!isLoading && <div className='p-4 grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-8'>
                 {
                     tools?.map(tool => <Tool key={tool._id} tool={tool}></Tool>)
