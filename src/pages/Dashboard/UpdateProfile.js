@@ -33,9 +33,8 @@ const UpdateProfile = () => {
             const response = await axios.put('http://localhost:5000/updateuser', data);
             // console.log(response);
             if (response.status === 200) {
-                toast.success('Successfully Updated Profile in DataBase!', { id: 'Success' });
+                toast.success('Successfully Updated Profile Information!', { id: 'Success' });
             }
-            toast.success('Successfully Updated Profile in Firebase!', { id: 'update-success' });
             e.target.reset();
         }
         catch (error) {

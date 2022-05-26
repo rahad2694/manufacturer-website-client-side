@@ -28,7 +28,7 @@ const MyOrders = () => {
                 .then(response => {
                     setIsDelete(false);
                     refetch();
-                    console.log(response);
+                    // console.log(response);
                     if(response.data.deletedCount>0){
                         toast.success('Successfully Deleted', { id: 'deleted' })
                     }
