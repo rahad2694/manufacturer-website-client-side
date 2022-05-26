@@ -2,7 +2,7 @@ import React from 'react';
 
 const Reviews = () => {
     return (
-        <div className='my-12 mx-5 lg:mx-10'>
+        <div className='my-12 mx-5 lg:mx-10 h-80'>
             <h1 className='text-3xl font-bold mt-3 mb-10 italic mx-auto text-gray-700 max-w-4xl'>What Our Customers Say?</h1>
             <div id="carouselExampleCaptions" className="carousel slide relative carousel-dark" data-bs-ride="carousel">
                 <div className="carousel-inner relative w-full overflow-hidden">

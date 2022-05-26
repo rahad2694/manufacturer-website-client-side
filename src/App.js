@@ -2,9 +2,11 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blog from './pages/Blogs/Blog';
+import AddReview from './pages/Dashboard/AddReview';
 import Dashboard from './pages/Dashboard/Dashboard';
 import MyOrders from './pages/Dashboard/MyOrders';
 import MyProfile from './pages/Dashboard/MyProfile';
+import UpdateProfile from './pages/Dashboard/UpdateProfile';
 import Home from './pages/Home/Home';
 import Items from './pages/Home/Items/Items';
 import Purchase from './pages/Home/Purchase/Purchase';
@@ -43,6 +45,8 @@ function App() {
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
+          <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>
+          <Route path='addreview' element={<AddReview></AddReview>}></Route>
         </Route>
 
 
