@@ -53,7 +53,7 @@ const TopNav = () => {
                     toast.success('Successfully Logged Out', { id: 'logout' });
                 }} className="btn btn-sm text-white">Logout</button> : <Link to="/login" className="btn btn-sm text-white">Login</Link>}
 
-                {user?.uid && <label for="my-drawer-2" class="btn btn-sm text-white drawer-button lg:hidden ml-3"><p className='text-lg'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></p></label>}
+                {user?.uid && <label htmlFor="my-drawer-2" className="btn btn-sm text-white drawer-button lg:hidden ml-3"><p className='text-lg'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></p></label>}
             </div>
         </div>
     );
