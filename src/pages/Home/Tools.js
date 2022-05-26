@@ -8,7 +8,7 @@
 
 // const Tools = () => {
 //     const { isLoading, refetch, error, data: tools } = useQuery(['toolsData'], () =>
-//         fetch('https://tools-manufacturer-allumin.herokuapp.com/tools').then(res =>
+//         fetch('http://localhost:5000/tools').then(res =>
 //             res.json()
 //         )
 //     )
@@ -49,7 +49,7 @@ import Tool from './Tool';
 const Tools = () => {
     const [intervals, setIntervals] = useState(1000);
     const { isLoading, error, data: tools } = useQuery(['toolsData'], () =>
-        fetch('https://tools-manufacturer-allumin.herokuapp.com/tools').then(res =>
+        fetch('http://localhost:5000/tools').then(res =>
             res.json()
         ),
         {

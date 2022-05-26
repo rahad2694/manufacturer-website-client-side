@@ -45,7 +45,7 @@ const Purchase = () => {
             });
     };
     const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
-        fetch(`https://tools-manufacturer-allumin.herokuapp.com/item/${id}`).then(res =>
+        fetch(`http://localhost:5000/item/${id}`).then(res =>
             res.json()
         ),
         {

@@ -27,14 +27,15 @@ const Login = () => {
         if (emailUser || googleUser) {
             console.log('I am in')
             let user = emailUser || googleUser;
-            const url = `https://tools-manufacturer-allumin.herokuapp.com/login`;
+            const url = `http://localhost:5000/login`;
             fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email: user.user.email
+                    email: user.user.email,
+                    displayName: user.user.displayName
                 })
             })
                 .then(res => res.json())

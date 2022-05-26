@@ -1,15 +1,46 @@
+import { async } from '@firebase/util';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
+import { useUpdateProfile } from 'react-firebase-hooks/auth';
+import Spinners from '../shared/Spinners';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const UpdateProfile = () => {
     const [user] = useAuthState(auth);
+    const [updateProfile, updating, error] = useUpdateProfile(auth);
     // const handlesubmit = async () => {
     //     // await updateProfile({ displayName, photoURL });
     // }
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = async(data,e) => {
+        data.email = user?.email;
+        console.log(data);
+        const {displayName,photoURL} = data;
+        try{
+            await updateProfile({ displayName, photoURL });
+            const response = await axios.put('http://localhost:5000/updateuser', data);
+            // console.log(response);
+            if (response.status === 200) {
+                toast.success('Successfully Updated Profile in DataBase!', { id: 'Success' });
+            }
+            toast.success('Successfully Updated Profile in Firebase!',{id:'update-success'});
+            e.target.reset();
+        }
+        catch(error){
+            toast.error(error.message,{id:'updating-error'});
+        }
+        
+    }
+    if(updating){
+        return <Spinners></Spinners>
+    }
+    if(error){
+        console.log(error);
+        toast.error(error.message,{id:'update-error'});
+    }
     return (
         <div>
             <div>
@@ -31,7 +62,7 @@ const UpdateProfile = () => {
                                                         Name:
                                                     </th>
                                                     <th scope="col" className="text-sm font-medium text-gray-900 px-4 py-2 border-r">
-                                                        <input {...register("name", { required: true })} defaultValue={user?.displayName} type="text" placeholder="Your Name" className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input {...register("displayName", { required: true })} defaultValue={user?.displayName} type="text" placeholder="Your Name" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -49,7 +80,7 @@ const UpdateProfile = () => {
                                                         Photo URL
                                                     </td>
                                                     <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
-                                                        <input {...register("photo", { required: true })} type="text" defaultValue={user?.photoURL} placeholder="Your Name" className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input {...register("photoURL", { required: true })} type="text" defaultValue={user?.photoURL} placeholder="Your Name" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </td>
                                                 </tr>
                                                 <tr className="border-2">
@@ -91,7 +122,7 @@ const UpdateProfile = () => {
                             </div>
                         </div>
 
-                        <input type="submit" className='btn text-white my-3'/>
+                        <input type="submit" className='btn text-white my-3' />
                     </form>
                 </div>
             </div>
