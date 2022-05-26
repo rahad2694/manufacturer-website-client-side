@@ -9,13 +9,16 @@ import Spinners from '../../shared/Spinners';
 
 const Purchase = () => {
     const [{ currentUser }] = useState(auth);
-    // console.log(currentUser);
+    const [intervals, setIntervals] = useState(1000);
     const { id } = useParams();
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = (data, event) => {
+    const onSubmit = (data, e) => {
         const { reqQty } = data;
         data.reqQty = Number(reqQty);
-        console.log(data);
+        data.toolId = id;
+        const newQty = available - (data.reqQty);
+        // console.log('New QTY', newQty);
+        // console.log(data);
         if (data.reqQty < moq) {
             toast.error(`Minimum ${moq} pcs need to added in Cart`, { id: 'moq_error' });
             return;
@@ -24,34 +27,53 @@ const Purchase = () => {
             toast.error(`Maximum ${available} pcs Can be added in Cart`, { id: 'max_error' });
             return;
         }
-        toast.success(`${data.reqQty} pcs have been added in Order!`, { id: 'cart-success' });
+        // toast.success(`${data.reqQty} pcs have been added in Order!`, { id: 'cart-success' });
         axios.post('http://localhost:5000/placeorder', data)
-            .then(function (response) {
-                console.log(response);
-                toast.success(`Order Placed!`, { id: 'order-success' });
+            .then(async function (response) {
+                // console.log(response);
+                // toast.success(`Order Placed!`, { id: 'order-success' });
+                itemInfo.available = newQty;
+                let newInfo = itemInfo;
+                delete newInfo._id;
+                // console.log(newInfo);
+                updateQty(data.toolId, newInfo);
+                e.target.reset();
             })
             .catch(function (error) {
-                console.log(error);
-                toast.error(`Error Placing Order!`, { id: 'order-error' });
+                // console.log(error);
+                toast.error(error.message, { id: 'order-error' });
             });
-        // event.reset();
     };
-    const { isLoading, error, data: itemInfo } = useQuery('toolsData', () =>
+    const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
         fetch(`https://tools-manufacturer-allumin.herokuapp.com/item/${id}`).then(res =>
             res.json()
-        )
+        ),
+        {
+            // Refetch the data every second
+            refetchInterval: intervals,
+        }
     )
     if (isLoading) {
         return <Spinners></Spinners>
     }
     if (error) {
-        console.log(error);
+        // console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
-    const { _id, available, description, img, moq, price, title } = itemInfo;
+    const { available, description, img, moq, price, title } = itemInfo;
 
-    // console.log(itemInfo);
-    // console.log(id);
+    async function updateQty(targetID, updatedData) {
+        try {
+            const response = await axios.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);
+            // console.log(response);
+            if (response.status === 200) {
+                toast.success('Order placed Successfully.!', { id: 'Success' });
+            }
+        } catch (error) {
+            // console.log(error);
+            toast.error(error.message, { id: 'update-error' });
+        }
+    }
     return (
         <div>
             <h1 className='text-3xl font-bold my-5 italic mx-auto text-gray-700 max-w-4xl'>Want to Order <span className='text-orange-500 font-semibold'>{title}</span> ?</h1>

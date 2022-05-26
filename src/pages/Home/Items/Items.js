@@ -8,7 +8,7 @@ import Tool from '../Tool';
 
 const Items = () => {
     const [intervals, setIntervals] = useState(1000);
-    const { isLoading, error, data: tools } = useQuery(['allToolsData',intervals], () =>
+    const { isLoading, error, data: tools } = useQuery(['allToolsData'], () =>
         fetch('https://tools-manufacturer-allumin.herokuapp.com/alltools').then(res =>
             res.json()
         ),
