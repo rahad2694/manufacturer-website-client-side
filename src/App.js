@@ -34,6 +34,11 @@ function App() {
             <Items></Items>
           </RequireAuth>
         }></Route>
+        <Route path='/profile' element={
+          <RequireAuth>
+            <MyProfile></MyProfile>
+          </RequireAuth>
+        }></Route>
         <Route path='/purchase/:id' element={
           <RequireAuth>
             <Purchase></Purchase>

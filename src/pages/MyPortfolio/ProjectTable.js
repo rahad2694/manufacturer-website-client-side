@@ -4,8 +4,8 @@ import React from 'react';
 
 const ProjectTable = () => {
     return (
-        <div class="overflow-x-auto mx-12 my-10">
-            <table class="table table-zebra w-full">
+        <div className="overflow-x-auto mx-12 my-10">
+            <table className="table table-zebra w-full">
                 {/* <!-- head --> */}
                 <thead>
                     <tr>

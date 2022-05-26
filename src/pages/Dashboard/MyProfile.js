@@ -29,7 +29,7 @@ const MyProfile = () => {
 
     return (
         <div>
-            <div className="avatar my-3">
+            <div className="avatar mb-3 mt-5">
                 <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img src={user?.photoURL ? user?.photoURL : 'https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png'} alt='' />
                 </div>
