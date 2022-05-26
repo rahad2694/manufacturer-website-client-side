@@ -28,7 +28,7 @@ const Purchase = () => {
             return;
         }
         // toast.success(`${data.reqQty} pcs have been added in Order!`, { id: 'cart-success' });
-        axios.post('http://localhost:5000/placeorder', data)
+        axios.post('https://tools-manufacturer-allumin.herokuapp.com/placeorder', data)
             .then(async function (response) {
                 // console.log(response);
                 // toast.success(`Order Placed!`, { id: 'order-success' });
@@ -45,7 +45,7 @@ const Purchase = () => {
             });
     };
     const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
-        fetch(`http://localhost:5000/item/${id}`).then(res =>
+        fetch(`https://tools-manufacturer-allumin.herokuapp.com/item/${id}`).then(res =>
             res.json()
         ),
         {
@@ -64,7 +64,7 @@ const Purchase = () => {
 
     async function updateQty(targetID, updatedData) {
         try {
-            const response = await axios.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);
+            const response = await axios.put(`https://tools-manufacturer-allumin.herokuapp.com/updatestock/${targetID}`, updatedData);
             // console.log(response);
             if (response.status === 200) {
                 toast.success('Order placed Successfully.!', { id: 'Success' });

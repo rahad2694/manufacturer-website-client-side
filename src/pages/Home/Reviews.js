@@ -1,91 +1,63 @@
-import React from 'react';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import Spinners from '../shared/Spinners';
 
 const Reviews = () => {
+    const [allRatings, setAllRatings] = useState([]);
+    useEffect(() => {
+        async function getItems() {
+            try {
+                const response = await axios.get('https://tools-manufacturer-allumin.herokuapp.com/allratings');
+                setAllRatings(response.data);
+            }
+            catch (error) {
+                toast.error(error.message, { id: 'error-message' })
+            }
+        }
+        getItems();
+    }, [allRatings]);
+
+    if (allRatings.length === 0) {
+        return <Spinners></Spinners>
+    }
     return (
-        <div className='my-12 mx-5 lg:mx-10 h-80'>
-            <h1 className='text-3xl font-bold mt-3 mb-10 italic mx-auto text-gray-700 max-w-4xl'>What Our Customers Say?</h1>
-            <div id="carouselExampleCaptions" className="carousel slide relative carousel-dark" data-bs-ride="carousel">
-                <div className="carousel-inner relative w-full overflow-hidden">
-                    <div className="carousel-item active relative float-left w-full text-center">
-                        <p className="text-xl italic mx-auto text-gray-700 max-w-4xl">
-                            "They are maintaining their quality from long since. Thus they have made themselves a Brand!"
-                        </p>
-                        <div className="rating mt-2">
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                        </div>
-                        <div className="mt-4 mb-3 flex justify-center">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-                                className="rounded-full w-24 h-24 shadow-lg"
-                                alt="Customer Review"
-                            />
-                        </div>
-                        <p className="text-gray-600 font-semibold">- Anna Morian</p>
-                    </div>
-                    <div className="carousel-item relative float-left w-full text-center">
-                        <p className="text-xl italic mx-auto text-gray-700 max-w-4xl">
-                            "Tools from Allumin Aparatus are world class. They deserve to be declared the best in the market!"
-                        </p>
-                        <div className="rating mt-2">
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-200" disabled/>
-                        </div>
-                        <div className="mt-4 mb-3 flex justify-center">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
-                                className="rounded-full w-24 h-24 shadow-lg"
-                                alt="Customer Review"
-                            />
-                        </div>
-                        <p className="text-gray-600 font-semibold">- Teresa May</p>
-                    </div>
-                    <div className="carousel-item relative float-left w-full text-center">
-                        <p className="text-xl italic mx-auto text-gray-700 max-w-4xl">
-                            "Every time I think of quality Tools and Apparatus, I surely think of <strong>Allumin Aparatus</strong>!"
-                        </p>
-                        <div className="rating mt-2">
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-200" disabled/>
-                            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-200" disabled/>
-                        </div>
-                        <div className="mt-4 mb-3 flex justify-center">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
-                                className="rounded-full w-24 h-24 shadow-lg"
-                                alt="Customer Review"
-                            />
-                        </div>
-                        <p className="text-gray-600 font-semibold">- Kate Allise</p>
-                    </div>
+        <div>
+
+            <section className="mb-20 text-gray-700">
+                <div className="text-center md:max-w-xl lg:max-w-3xl mx-auto">
+                    <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>What Our Customers Say?</h1>
                 </div>
-                <button
-                    className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev"
-                >
-                    <span className="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button
-                    className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next"
-                >
-                    <span className="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
-            </div>
+
+                <div className="grid md:grid-cols-3 gap-6 lg:gap-12 text-center mx-12">
+                    {
+                        allRatings.map(rating => <div key={rating._id} className="mb-12 md:mb-0">
+                            <div className="flex justify-center mb-6">
+                                <img alt='' src={rating.photoURL} className="rounded-full shadow-lg w-32" />
+                            </div>
+                            <h5 className="text-xl font-semibold mb-4">{rating.displayName}</h5>
+                            <p className="mb-4">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-left" className="w-6 pr-2 inline-block" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path
+                                        fill="currentColor"
+                                        d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"
+                                    ></path>
+                                </svg>
+                                {rating.feedback}
+                            </p>
+                            <ul className="flex justify-center mb-0">
+                                {rating.rated === 1 && <li className='text-yellow-400 text-lg'><FontAwesomeIcon icon={faStar} /></li>}
+                                {rating.rated === 2 && <li className='text-yellow-400 text-lg'><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /></li>}
+                                {rating.rated === 3 && <li className='text-yellow-400 text-lg'><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /></li>}
+                                {rating.rated === 4 && <li className='text-yellow-400 text-lg'><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /></li>}
+                                {rating.rated === 5 && <li className='text-yellow-400 text-lg'><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /><FontAwesomeIcon icon={faStar} /></li>}
+                            </ul>
+                        </div>)
+                    }
+                </div>
+            </section>
         </div>
     );
 };

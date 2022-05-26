@@ -11,7 +11,7 @@ const Tools = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get('http://localhost:5000/tools');
+                const response = await axios.get('https://tools-manufacturer-allumin.herokuapp.com/tools');
                 setTools(response.data);
             }
             catch (error) {
@@ -21,7 +21,7 @@ const Tools = () => {
         }
         getItems();
     }, [tools]);
-    
+
     if (tools.length === 0) {
         return <Spinners></Spinners>
     }

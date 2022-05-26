@@ -10,7 +10,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);
     const { isLoading, error, data: userInfo } = useQuery(['toolsData'], () =>
-        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
+        fetch(`https://tools-manufacturer-allumin.herokuapp.com/user/${user?.email}`).then(res =>
             res.json()
         ),
         {
@@ -26,7 +26,6 @@ const MyProfile = () => {
         toast.error(error.message, { id: 'load-error' })
     }
     const { education, linkedin, location, phone } = userInfo;
-
     return (
         <div>
             <div className="avatar mb-3 mt-5">
@@ -58,7 +57,7 @@ const MyProfile = () => {
                                                 Education
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                              {education}
+                                                {education ? education : 'Please Add Education'}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -66,7 +65,7 @@ const MyProfile = () => {
                                                 Location
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {location}
+                                                {location ? location : 'Please Add location'}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -74,7 +73,7 @@ const MyProfile = () => {
                                                 Phone
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {phone}
+                                                {phone ? phone : 'Please Add phone number'}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -82,7 +81,7 @@ const MyProfile = () => {
                                                 Linked In
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {linkedin}
+                                                {linkedin ? linkedin : 'Please add linkedin profile link'}
                                             </td>
                                         </tr>
                                     </tbody>

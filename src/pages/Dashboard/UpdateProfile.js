@@ -14,7 +14,7 @@ const UpdateProfile = () => {
 
     const [intervals, setIntervals] = useState(1000);
     const { isLoading, error: loadError, data: userInfo } = useQuery(['toolsData'], () =>
-        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
+        fetch(`https://tools-manufacturer-allumin.herokuapp.com/user/${user?.email}`).then(res =>
             res.json()
         ),
         {
@@ -30,7 +30,7 @@ const UpdateProfile = () => {
         const { displayName, photoURL } = data;
         try {
             await updateProfile({ displayName, photoURL });
-            const response = await axios.put('http://localhost:5000/updateuser', data);
+            const response = await axios.put('https://tools-manufacturer-allumin.herokuapp.com/updateuser', data);
             // console.log(response);
             if (response.status === 200) {
                 toast.success('Successfully Updated Profile Information!', { id: 'Success' });
