@@ -22,6 +22,7 @@ const TopNav = () => {
                         <li><Link to="/blog">Blog</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                         <li><Link to="/about">About</Link></li>
+                        <li><Link to="/developer">My Portfolio</Link></li>
                         {user?.uid && <li><Link to="/dashboard">Dashboard</Link></li>}
                         <li><Link to='/profile'>{user?.displayName}</Link></li>
                     </ul>
@@ -39,6 +40,7 @@ const TopNav = () => {
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    <li><Link to="/developer">My Portfolio</Link></li>
                     {user?.uid && <li><Link to="/dashboard">Dashboard</Link></li>}
                 </ul>
             </div>

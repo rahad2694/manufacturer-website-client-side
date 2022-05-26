@@ -13,6 +13,7 @@ import Purchase from './pages/Home/Purchase/Purchase';
 import Login from './pages/Login/Login';
 import RequireAuth from './pages/Login/RequireAuth';
 import SignUp from './pages/Login/SignUp/SignUp';
+import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
 import Footer from './pages/shared/Footer';
 import NotFound from './pages/shared/NotFound';
 import TopNav from './pages/shared/TopNav';
@@ -27,6 +28,7 @@ function App() {
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/developer' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/items' element={
           <RequireAuth>
             <Items></Items>
