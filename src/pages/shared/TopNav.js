@@ -1,3 +1,5 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -16,11 +18,12 @@ const TopNav = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/blog">Blog</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to='/profile'>{user?.displayName}</Link></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/blog">Blog</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        {user?.uid && <li><Link to="/dashboard">Dashboard</Link></li>}
+                        <li><Link to='/profile'>{user?.displayName}</Link></li>
                     </ul>
                 </div>
                 <div className="avatar ml-4">
@@ -36,18 +39,21 @@ const TopNav = () => {
                     <li><Link to="/blog">Blog</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    {user?.uid && <li><Link to="/dashboard">Dashboard</Link></li>}
                 </ul>
             </div>
             <div className="navbar-end mr-3">
-            {user?.uid && <div className="navbar-center hidden lg:flex mr-3">
-                <ul className="menu menu-horizontal p-0">
-                    <li><Link to='/profile'>{user?.displayName}</Link></li>
-                </ul>
-            </div>}
-                {user?.uid? <button onClick={() => {
-                            signOut(auth);
-                            toast.success('Successfully Logged Out', { id: 'logout' });
-                        }} className="btn btn-sm text-white">Logout</button>: <Link to="/login" className="btn btn-sm text-white">Login</Link>}
+                {user?.uid && <div className="navbar-center hidden lg:flex mr-3">
+                    <ul className="menu menu-horizontal p-0">
+                        <li><Link to='/profile'>{user?.displayName}</Link></li>
+                    </ul>
+                </div>}
+                {user?.uid ? <button onClick={() => {
+                    signOut(auth);
+                    toast.success('Successfully Logged Out', { id: 'logout' });
+                }} className="btn btn-sm text-white">Logout</button> : <Link to="/login" className="btn btn-sm text-white">Login</Link>}
+
+                {user?.uid && <label for="my-drawer-2" class="btn btn-sm text-white drawer-button lg:hidden ml-3"><p className='text-lg'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></p></label>}
             </div>
         </div>
     );

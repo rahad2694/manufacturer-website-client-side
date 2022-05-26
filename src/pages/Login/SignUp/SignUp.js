@@ -137,7 +137,7 @@ const SignUp = () => {
                                                     await updateProfile({ displayName });
                                                     await sendEmailVerification();
                                                 } else if (!/^.{8,}$/.test(password)) {
-                                                    toast.error('Password Must be 8 characters', { id: 'passError' })
+                                                    toast.error('Password Must be at-least 8 characters', { id: 'passError' })
                                                 }
                                             } else {
                                                 toast.error('Name, Email & password required', { id: 'inputError' })

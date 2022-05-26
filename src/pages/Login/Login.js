@@ -127,10 +127,10 @@ const Login = () => {
                                                 if (!email.includes('@')) {
                                                     toast.error('Invalid E-mail ID', { id: 'email@Error' })
                                                 }
-                                                else if (/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+                                                else if (/^.{8,}$/.test(password)) {
                                                     signInWithEmailAndPassword(email, password)
-                                                } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
-                                                    toast.error('Password Must Contain Minimum eight characters, at least one letter and one number', { id: 'passError' })
+                                                } else if (!/^.{8,}$/.test(password)) {
+                                                    toast.error('Password Must be at-least 8 characters', { id: 'passError' })
                                                 }
                                             } else {
                                                 toast.error('Email & password required', { id: 'inputError' })
