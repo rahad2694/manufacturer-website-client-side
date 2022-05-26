@@ -1,5 +1,4 @@
-import { async } from '@firebase/util';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
@@ -7,40 +6,52 @@ import { useUpdateProfile } from 'react-firebase-hooks/auth';
 import Spinners from '../shared/Spinners';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
 const UpdateProfile = () => {
     const [user] = useAuthState(auth);
     const [updateProfile, updating, error] = useUpdateProfile(auth);
-    // const handlesubmit = async () => {
-    //     // await updateProfile({ displayName, photoURL });
-    // }
+
+    const [intervals, setIntervals] = useState(1000);
+    const { isLoading, error: loadError, data: userInfo } = useQuery(['toolsData'], () =>
+        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
+            res.json()
+        ),
+        {
+            // Refetch the data every second
+            refetchInterval: intervals,
+        }
+    )
+
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = async(data,e) => {
+    const onSubmit = async (data, e) => {
         data.email = user?.email;
         console.log(data);
-        const {displayName,photoURL} = data;
-        try{
+        const { displayName, photoURL } = data;
+        try {
             await updateProfile({ displayName, photoURL });
             const response = await axios.put('http://localhost:5000/updateuser', data);
             // console.log(response);
             if (response.status === 200) {
                 toast.success('Successfully Updated Profile in DataBase!', { id: 'Success' });
             }
-            toast.success('Successfully Updated Profile in Firebase!',{id:'update-success'});
+            toast.success('Successfully Updated Profile in Firebase!', { id: 'update-success' });
             e.target.reset();
         }
-        catch(error){
-            toast.error(error.message,{id:'updating-error'});
+        catch (error) {
+            toast.error(error.message, { id: 'updating-error' });
         }
-        
+
     }
-    if(updating){
+    if (updating || isLoading) {
         return <Spinners></Spinners>
     }
-    if(error){
-        console.log(error);
-        toast.error(error.message,{id:'update-error'});
+    if (error || loadError) {
+        let erroMsg = error || loadError;
+        console.log(erroMsg);
+        toast.error(erroMsg.message, { id: 'update-error' });
     }
+    const { education, linkedin, location, phone } = userInfo;
     return (
         <div>
             <div>
@@ -80,7 +91,7 @@ const UpdateProfile = () => {
                                                         Photo URL
                                                     </td>
                                                     <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
-                                                        <input {...register("photoURL", { required: true })} type="text" defaultValue={user?.photoURL} placeholder="Your Name" className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input {...register("photoURL", { required: true })} type="text" defaultValue={user?.photoURL} placeholder="Photo URL" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </td>
                                                 </tr>
                                                 <tr className="border-2">
@@ -88,7 +99,7 @@ const UpdateProfile = () => {
                                                         Linked-In
                                                     </td>
                                                     <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
-                                                        <input {...register("linkedin", { required: true })} type="text" placeholder="Your " className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input defaultValue={linkedin} {...register("linkedin", { required: true })} type="text" placeholder="Your Linked In Profile" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </td>
                                                 </tr>
                                                 <tr className="border-2">
@@ -96,7 +107,7 @@ const UpdateProfile = () => {
                                                         Location
                                                     </td>
                                                     <td className="text-sm text-gray-900 font-light px-4 lg:py-3 py-2 whitespace-nowrap border-r">
-                                                        <input {...register("location", { required: true })} type="text" placeholder="Your " className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input defaultValue={location} {...register("location", { required: true })} type="text" placeholder="Your Address" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </td>
                                                 </tr>
                                                 <tr className="border-2">
@@ -104,15 +115,15 @@ const UpdateProfile = () => {
                                                         Phone
                                                     </td>
                                                     <td className="text-sm text-gray-900 font-light px-4 lg:py-3 py-2 whitespace-nowrap border-r">
-                                                        <input {...register("phone", { required: true })} type="number" placeholder="Your " className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input defaultValue={phone} {...register("phone", { required: true })} type="number" placeholder="Your Phone Number" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </td>
                                                 </tr>
-                                                <tr className="border-2">
+                                                <tr className="border-  2">
                                                     <td className="text-sm text-gray-900 font-light px-4 lg:py-3 py-2 whitespace-nowrap border-r">
                                                         Education
                                                     </td>
                                                     <td className="text-sm text-gray-900 font-light px-4 lg:py-3 py-2 whitespace-nowrap border-r">
-                                                        <input {...register("education", { required: true })} type="text" placeholder="Your " className="input input-bordered input-sm w-full max-w-xs" />
+                                                        <input defaultValue={education} {...register("education", { required: true })} type="text" placeholder="Your Education Level" className="input input-bordered input-sm w-full max-w-xs" />
                                                     </td>
                                                 </tr>
                                             </tbody>

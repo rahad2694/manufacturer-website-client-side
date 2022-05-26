@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Spinners from '../shared/Spinners';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
-    const [useeInfoDB, setUserInfoDB] = useState({});
-    // console.log(user);
+    const [intervals, setIntervals] = useState(1000);
+    const { isLoading, error, data: userInfo } = useQuery(['toolsData'], () =>
+        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
+            res.json()
+        ),
+        {
+            // Refetch the data every second
+            refetchInterval: intervals,
+        }
+    )
+    if (isLoading) {
+        return <Spinners></Spinners>
+    }
+    if (error) {
+        console.log(error);
+        toast.error(error.message, { id: 'load-error' })
+    }
+    const { education, linkedin, location, phone } = userInfo;
+
     return (
         <div>
             <div className="avatar my-3">
@@ -38,7 +58,7 @@ const MyProfile = () => {
                                                 Education
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                zxczcdsdcs
+                                              {education}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -46,7 +66,7 @@ const MyProfile = () => {
                                                 Location
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                scdsvdvsdv
+                                                {location}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -54,7 +74,7 @@ const MyProfile = () => {
                                                 Phone
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                adcsawe
+                                                {phone}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -62,7 +82,7 @@ const MyProfile = () => {
                                                 Linked In
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                wedwewe
+                                                {linkedin}
                                             </td>
                                         </tr>
                                     </tbody>
