@@ -10,7 +10,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);
     const { isLoading, error, data: userInfo } = useQuery(['toolsData'], () =>
-        fetch(`https://tools-manufacturer-allumin.herokuapp.com/user/${user?.email}`).then(res =>
+        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
             res.json()
         ),
         {

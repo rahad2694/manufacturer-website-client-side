@@ -30,7 +30,7 @@ const SignUp = () => {
 
             let user = emailUser || googleUser;
             console.log(user.user.displayName);
-            const url = `https://tools-manufacturer-allumin.herokuapp.com/login`;
+            const url = `http://localhost:5000/login`;
             fetch(url, {
                 method: 'POST',
                 headers: {

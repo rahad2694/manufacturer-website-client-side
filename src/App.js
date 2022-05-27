@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import MyOrders from './pages/Dashboard/MyOrders';
 import MyProfile from './pages/Dashboard/MyProfile';
 import UpdateProfile from './pages/Dashboard/UpdateProfile';
+import AllReviews from './pages/Home/AllReviews/AllReviews';
 import Home from './pages/Home/Home';
 import Items from './pages/Home/Items/Items';
 import Purchase from './pages/Home/Purchase/Purchase';
@@ -28,6 +29,7 @@ function App() {
         <Route path='/blog' element={<Blog></Blog>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/allreviews' element={<AllReviews></AllReviews>}></Route>
         <Route path='/developer' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/items' element={
           <RequireAuth>

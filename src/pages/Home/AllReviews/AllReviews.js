@@ -3,15 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
-import Spinners from '../shared/Spinners';
+import Spinners from '../../shared/Spinners';
 
-const Reviews = () => {
+const AllReviews = () => {
     const [allRatings, setAllRatings] = useState([]);
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get('http://localhost:5000/sixratings');
+                const response = await axios.get('http://localhost:5000/allratings');
                 setAllRatings(response.data);
             }
             catch (error) {
@@ -24,12 +23,13 @@ const Reviews = () => {
     if (allRatings.length === 0) {
         return <Spinners></Spinners>
     }
+
     return (
         <div>
 
             <section className="mb-20 text-gray-700">
                 <div className="text-center md:max-w-xl lg:max-w-3xl mx-auto">
-                    <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>What Our Customers Say?</h1>
+                    <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>All Our Happy Customers</h1>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6 lg:gap-12 text-center mx-12">
@@ -58,10 +58,9 @@ const Reviews = () => {
                         </div>)
                     }
                 </div>
-                <Link className='btn mb-5 mt-10 text-white' to="/allreviews">See All Reviews</Link>
             </section>
         </div>
     );
 };
 
-export default Reviews;
+export default AllReviews;

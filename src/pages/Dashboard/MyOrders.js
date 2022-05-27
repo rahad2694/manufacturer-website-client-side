@@ -14,7 +14,7 @@ const MyOrders = () => {
     const [currentId, setCurrentId] = useState('');
     // const [intervals, setIntervals] = useState(100000);
     const { isLoading, error, data: orders, refetch } = useQuery(['allToolsData'], () =>
-        fetch(`https://tools-manufacturer-allumin.herokuapp.com/orders/${user?.email}`).then(res =>
+        fetch(`http://localhost:5000/orders/${user?.email}`).then(res =>
             res.json()
         ),
         // {
@@ -24,7 +24,7 @@ const MyOrders = () => {
     )
     useEffect(() => {
         if (isDelete) {
-            axios.delete(`https://tools-manufacturer-allumin.herokuapp.com/deleteorder/${currentId}`)
+            axios.delete(`http://localhost:5000/deleteorder/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     refetch();

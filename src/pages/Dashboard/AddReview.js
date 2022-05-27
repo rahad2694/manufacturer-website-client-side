@@ -16,7 +16,7 @@ const AddReview = () => {
             data.photoURL = user?.photoURL;
             data.email = user?.email;
             // console.log(data);
-            axios.post('https://tools-manufacturer-allumin.herokuapp.com/addrating', data)
+            axios.post('http://localhost:5000/addrating', data)
                 .then(function (response) {
                     // console.log(response);
                     if(response.data.insertedId){
