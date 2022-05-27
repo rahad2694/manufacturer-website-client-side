@@ -52,7 +52,7 @@ const MyOrders = () => {
         setOpen(!open);
         setCurrentId(id);
     }
-    const handlePayment = (id) =>{
+    const handlePayment = (id) => {
         navigate(`/payment/${id}`)
     }
     return (
@@ -86,7 +86,11 @@ const MyOrders = () => {
                                         orders?.map((order, index) => <tr key={order?._id} index={index} className="border-b">
                                             <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 border-r">{index + 1}</td>
                                             <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
-                                                <p className=''>{order?._id}</p>
+                                                <div className="avatar">
+                                                    <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                                        <img src={order?.img} alt='' />
+                                                    </div>
+                                                </div><p className=''>{order?._id.slice(-8)}</p>
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
                                                 {order?.status ? order?.status : 'Not Available'}

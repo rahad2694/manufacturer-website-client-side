@@ -25,7 +25,6 @@ const MyProfile = () => {
         console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
-    const { education, linkedin, location, phone } = userInfo;
     return (
         <div>
             <div className="avatar mb-3 mt-5">
@@ -57,7 +56,7 @@ const MyProfile = () => {
                                                 Education
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {education ? education : 'Please Add Education'}
+                                                {userInfo?.education ? userInfo.education : 'Please Add Education'}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -65,7 +64,7 @@ const MyProfile = () => {
                                                 Location
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {location ? location : 'Please Add location'}
+                                                {userInfo?.location ? userInfo?.location : 'Please Add location'}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -73,7 +72,7 @@ const MyProfile = () => {
                                                 Phone
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {phone ? phone : 'Please Add phone number'}
+                                                {userInfo?.phone ? userInfo?.phone : 'Please Add phone number'}
                                             </td>
                                         </tr>
                                         <tr className="border-2">
@@ -81,7 +80,7 @@ const MyProfile = () => {
                                                 Linked In
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-5 py-3 whitespace-nowrap border-r">
-                                                {linkedin ? linkedin : 'Please add linkedin profile link'}
+                                                {userInfo?.linkedin ? userInfo.linkedin : 'Please add linkedin profile link'}
                                             </td>
                                         </tr>
                                     </tbody>

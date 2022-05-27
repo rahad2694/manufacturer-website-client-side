@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Spinners from '../../shared/Spinners';
 
@@ -12,11 +12,35 @@ const Purchase = () => {
     const [intervals, setIntervals] = useState(1000);
     const { id } = useParams();
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
+        fetch(`http://localhost:5000/item/${id}`).then(res =>
+            res.json()
+        ),
+        {
+            // Refetch the data every second
+            refetchInterval: intervals,
+        }
+    )
+    if (isLoading) {
+        return <Spinners></Spinners>
+    }
+    if (error) {
+        // console.log(error);
+        toast.error(error.message, { id: 'load-error' })
+    }
+    const { available, description, img, moq, price, title } = itemInfo;
+
+
     const onSubmit = (data, e) => {
         const { reqQty } = data;
         data.reqQty = Number(reqQty);
         data.toolId = id;
         data.status = 'pending';
+        data.price = price;
+        data.itemName = title;
+        data.img = img;
+        data.orderValue = (Number(price) * data.reqQty);
         const newQty = available - (data.reqQty);
         // console.log('New QTY', newQty);
         // console.log(data);
@@ -45,23 +69,7 @@ const Purchase = () => {
                 toast.error(error.message, { id: 'order-error' });
             });
     };
-    const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
-        fetch(`http://localhost:5000/item/${id}`).then(res =>
-            res.json()
-        ),
-        {
-            // Refetch the data every second
-            refetchInterval: intervals,
-        }
-    )
-    if (isLoading) {
-        return <Spinners></Spinners>
-    }
-    if (error) {
-        // console.log(error);
-        toast.error(error.message, { id: 'load-error' })
-    }
-    const { available, description, img, moq, price, title } = itemInfo;
+
 
     // Function for updating available stock
     async function updateQty(targetID, updatedData) {
@@ -142,6 +150,7 @@ const Purchase = () => {
                     </form>
                 </div>
             </div>
+            <Link className='btn mb-5 mt-10 text-white' to="/items">Go to All-Items</Link>
         </div >
     );
 };
