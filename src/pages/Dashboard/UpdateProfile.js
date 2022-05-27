@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../firebase.init';
@@ -6,22 +6,13 @@ import { useUpdateProfile } from 'react-firebase-hooks/auth';
 import Spinners from '../shared/Spinners';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import UseGetUser from '../../hooks/UseGetUser';
 
 const UpdateProfile = () => {
     const [user] = useAuthState(auth);
     const [updateProfile, updating, error] = useUpdateProfile(auth);
 
-    const [intervals, setIntervals] = useState(1000);
-    const { isLoading, error: loadError, data: userInfo } = useQuery(['toolsData'], () =>
-        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
-            res.json()
-        ),
-        {
-            // Refetch the data every second
-            refetchInterval: intervals,
-        }
-    )
+    const [userInfo, isLoading, loadError] = UseGetUser();
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = async (data, e) => {

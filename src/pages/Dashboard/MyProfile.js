@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
-import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
+import UseGetUser from '../../hooks/UseGetUser';
 import Spinners from '../shared/Spinners';
 
 const MyProfile = () => {
+    const [userInfo, isLoading, error] = UseGetUser();
     const [user] = useAuthState(auth);
-    const [intervals, setIntervals] = useState(1000);
-    const { isLoading, error, data: userInfo } = useQuery(['toolsData'], () =>
-        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
-            res.json()
-        ),
-        {
-            // Refetch the data every second
-            refetchInterval: intervals,
-        }
-    )
     if (isLoading) {
         return <Spinners></Spinners>
     }

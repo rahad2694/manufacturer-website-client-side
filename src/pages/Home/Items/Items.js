@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
-import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import UseLoadAllTools from '../../../hooks/UseLoadAllTools';
 import Spinners from '../../shared/Spinners';
 import Tool from '../Tool';
 
 
 const Items = () => {
-    const [intervals, setIntervals] = useState(1000);
-    const { isLoading, error, data: tools } = useQuery(['allToolsData'], () =>
-        fetch('http://localhost:5000/alltools').then(res =>
-            res.json()
-        ),
-        {
-            // Refetch the data every second
-            refetchInterval: intervals,
-        }
-    )
+    const [tools, isLoading, error] = UseLoadAllTools();
+
     if (isLoading) {
         return <Spinners></Spinners>
     }

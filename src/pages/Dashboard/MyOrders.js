@@ -92,8 +92,9 @@ const MyOrders = () => {
                                                     </div>
                                                 </div><p className=''>{order?._id.slice(-8)}</p>
                                             </td>
-                                            <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
+                                            <td title={order?.ref} className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
                                                 {order?.status ? order?.status : 'Not Available'}
+                                                {order?.ref && <p className='hidden md:block text-xs text-green-500 mt-1'>{order?.ref.slice(3)}</p>}
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap">
                                                 <button disabled={order.status === 'paid'} onClick={() => handlePayment(order?._id)} className='btn btn-xs text-white mr-3 hover:text-red-500'>{(order.status === 'Paid') ? 'Paid' : 'Pay'}</button>

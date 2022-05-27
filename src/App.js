@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blog from './pages/Blogs/Blog';
 import AddReview from './pages/Dashboard/AddReview';
+import ManageProducts from './pages/Dashboard/AdminOnly/ManageProducts';
 import Dashboard from './pages/Dashboard/Dashboard';
 import MyOrders from './pages/Dashboard/MyOrders';
 import MyProfile from './pages/Dashboard/MyProfile';
@@ -62,6 +63,7 @@ function App() {
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
           <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
+          <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
         </Route>
 
 
