@@ -10,28 +10,25 @@ import Spinners from '../../shared/Spinners';
 const RequireAdmin = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
-    const [isAdmin, isLoading, error] = UseAdmin();
+    const [role, isLoading, error] = UseAdmin();
 
+    console.log('OUT-', role);
+    useEffect(() => {
+        if (!role || !user) {
+            console.log(role);
+            localStorage.removeItem('accessToken');
+            signOut(auth);
+            navigate('/');
+        }
+        // if (isLoading || loading) {
+        //     return <Spinners></Spinners>
+        // }
+        // if (error) {
+        //     toast.error(error.message, { id: 'error' });
+        //     return;
+        // }
+    }, [user, navigate,role]);
 
-    // useEffect(() => {
-    //     if (!isAdmin || !user) {
-    //         localStorage.removeItem('accessToken');
-    //         signOut(auth);
-    //         navigate('/');
-    //     }
-    //     if (isLoading || loading) {
-    //         return <Spinners></Spinners>
-    //     }
-    //     if (error) {
-    //         toast.error(error.message, { id: 'error' });
-    //         return;
-    //     }
-    // }, [user, navigate]);
-    if (!isAdmin || !user) {
-        localStorage.removeItem('accessToken');
-        signOut(auth);
-        navigate('/');
-    }
     if (isLoading || loading) {
         return <Spinners></Spinners>
     }
@@ -39,6 +36,12 @@ const RequireAdmin = ({ children }) => {
         toast.error(error.message, { id: 'error' });
         return;
     }
+    // if (!isAdmin || !user) {
+    //     console.log(isAdmin);
+    //     localStorage.removeItem('accessToken');
+    //     signOut(auth);
+    //     navigate('/');
+    // }
 
 
     return children;

@@ -13,6 +13,7 @@ import Home from './pages/Home/Home';
 import Items from './pages/Home/Items/Items';
 import Purchase from './pages/Home/Purchase/Purchase';
 import Login from './pages/Login/Login';
+import RequireAdmin from './pages/Login/RequireAdmin/RequireAdmin';
 import RequireAuth from './pages/Login/RequireAuth';
 import SignUp from './pages/Login/SignUp/SignUp';
 import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
@@ -63,7 +64,7 @@ function App() {
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
           <Route path='updateprofile' element={<UpdateProfile></UpdateProfile>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
-          <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
+          <Route path='manageproducts' element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
         </Route>
 
 
