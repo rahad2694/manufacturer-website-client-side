@@ -7,20 +7,27 @@ import toast from 'react-hot-toast';
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data, e) => {
+        const{available, price, moq} = data;
+        data.available = Number(available);
+        data.price = Number(price);
+        data.moq = Number(moq);
+        if(available<moq){
+            toast.error('Minimum Order Qty can not be higher than Stock Qty!',{id:'moq-error'});
+            return;
+        }
         console.log(data);
-        // axios.post('http://localhost:5000/addr3sating', data)
-        //     .then(function (response) {
-        //         // console.log(response);
-        //         if (response.data.insertedId) {
-        //             toast.success('Thank you for your feedback!', { id: 'rating-success' })
-        //         }
-        //         e.target.reset();
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //         toast.error(error.message, { id: 'order-error' });
-        //     });
-        // e.target.reset();
+        axios.post('http://localhost:5000/addnewproduct', data)
+            .then(function (response) {
+                // console.log(response);
+                if (response.data.insertedId) {
+                    toast.success('Successfully Added New Product!', { id: 'add-success' })
+                }
+                e.target.reset();
+            })
+            .catch(function (error) {
+                console.log(error);
+                toast.error(error.message, { id: 'add-error' });
+            });
     }
 
     return (

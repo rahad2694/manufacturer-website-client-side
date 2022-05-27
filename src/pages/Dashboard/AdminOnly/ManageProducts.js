@@ -10,7 +10,7 @@ import Spinners from '../../shared/Spinners';
 import DeleteModal from '../DeleteModal';
 
 const ManageProducts = () => {
-    const [tools, toolLoading, toolError, refetch] = UseLoadAllTools();
+    const [tools, toolLoading, toolError] = UseLoadAllTools();
  
     console.log(tools);
 
@@ -31,13 +31,12 @@ const ManageProducts = () => {
     // )
     useEffect(() => {
         if (isDelete) {
-            axios.delete(`http://localhost:5000/delejmteorder/${currentId}`)
+            axios.delete(`http://localhost:5000/deletetool/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
-                    refetch();
                     // console.log(response);
                     if (response.data.deletedCount > 0) {
-                        toast.success('Successfully Deleted', { id: 'deleted' })
+                        toast.success('Successfully Deleted', { id: 'deleted' });
                     }
                 })
                 .catch(error => {
