@@ -97,7 +97,7 @@ const MyOrders = () => {
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap">
                                                 <button disabled={order.status === 'paid'} onClick={() => handlePayment(order?._id)} className='btn btn-xs text-white mr-3 hover:text-red-500'>{(order.status === 'Paid') ? 'Paid' : 'Pay'}</button>
-                                                {order?.status === 'paid' ? 'Paid' : <button onClick={() => handleDelete(order?._id)} className='btn btn-xs text-white hover:text-red-500'>Cancel</button>}
+                                                {order?.status === 'paid' ? <span className='text-green-500'>PAID</span> : <button onClick={() => handleDelete(order?._id)} className='btn btn-xs text-white hover:text-red-500'>Cancel</button>}
                                             </td>
                                         </tr>)
                                     }

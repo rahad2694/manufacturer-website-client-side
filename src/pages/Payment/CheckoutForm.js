@@ -1,8 +1,10 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const CheckoutForm = ({ orderDetails }) => {
-    const { orderValue, name, email } = orderDetails;
+    const { _id, orderValue, name, email } = orderDetails;
     // console.log(orderValue)
     const stripe = useStripe();
     const elements = useElements();
@@ -61,6 +63,18 @@ const CheckoutForm = ({ orderDetails }) => {
             setCardError('');
             setPaymentDone(paymentIntent);
             console.log(paymentIntent);
+            let paymentData = {};
+            paymentData.ref = paymentIntent.id;
+            paymentData.status = 'paid';
+
+            console.log(paymentData);
+            //updating payment status in DB
+            const response = await axios.put(`http://localhost:5000/updateorder/${_id}`, paymentData);
+            console.log(response);
+            if (response.status === 200) {
+                toast.success('Payment Done & Recorded!', { id: 'payment-add-success' })
+            }
+
             setSuccess('Congrats! Payment Done');
         }
 
@@ -72,8 +86,8 @@ const CheckoutForm = ({ orderDetails }) => {
     // console.log(clientSecret);
     return (
         <div>
-            {!(paymentDone?.status==="succeeded")  && <form onSubmit={handleSubmit}>
-            <h2 className="card-title my-3">Enter Card Details</h2>
+            {!((paymentDone?.status === "succeeded")||!orderDetails.status==='paid') && <form onSubmit={handleSubmit}>
+                <h2 className="card-title my-3">Enter Card Details</h2>
                 <CardElement
                     options={{
                         style: {
@@ -95,9 +109,9 @@ const CheckoutForm = ({ orderDetails }) => {
                 </button>
             </form>}
             {cardError && <p className='text-xs text-red-500 mt-2'>{cardError}</p>}
-            {success && <>
-                <p className='text-xl text-green-500 mt-2'>{success}</p>
-                <p className='text-xs text-green-500 mt-2'>Ref: {paymentDone.id}</p>
+            {(success|| (orderDetails?.status==='paid')) && <>
+                <p className='text-xl text-green-500 mt-2'>{success || orderDetails?.status}</p>
+                <p className='text-xs text-green-500 mt-2'>Ref: {paymentDone.id || orderDetails?.ref}</p>
             </>}
         </div >
     );
