@@ -5,9 +5,9 @@ import auth from "../firebase.init";
 
 
 const UseGetUser = () => {
-    const [user] = useAuthState(auth);
+    const [user, loading, userError] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);
-    const { isLoading, error, data: userInfo } = useQuery(['toolsData'], () =>
+    const { isLoading: dbLoading, error: dbError, data: userInfo } = useQuery(['toolsData'], () =>
         fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
             res.json()
         ),
@@ -16,7 +16,8 @@ const UseGetUser = () => {
             refetchInterval: intervals,
         }
     );
-
+    let isLoading = dbLoading || loading;
+    let error = dbError || userError;
     return [userInfo, isLoading, error];
 }
 

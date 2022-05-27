@@ -25,7 +25,7 @@ const Login = () => {
     const [user] = useAuthState(auth);
     useEffect(() => {
         if (emailUser || googleUser) {
-            console.log('I am in')
+            // console.log('I am in')
             let user = emailUser || googleUser;
             const url = `http://localhost:5000/login`;
             fetch(url, {
