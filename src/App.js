@@ -15,6 +15,7 @@ import Login from './pages/Login/Login';
 import RequireAuth from './pages/Login/RequireAuth';
 import SignUp from './pages/Login/SignUp/SignUp';
 import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
+import Payment from './pages/Payment/Payment';
 import Footer from './pages/shared/Footer';
 import NotFound from './pages/shared/NotFound';
 import TopNav from './pages/shared/TopNav';
@@ -44,6 +45,11 @@ function App() {
         <Route path='/purchase/:id' element={
           <RequireAuth>
             <Purchase></Purchase>
+          </RequireAuth>
+        }></Route>
+        <Route path='/payment/:id' element={
+          <RequireAuth>
+            <Payment></Payment>
           </RequireAuth>
         }></Route>
         <Route path='/dashboard' element={

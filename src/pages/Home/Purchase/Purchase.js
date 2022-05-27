@@ -16,6 +16,7 @@ const Purchase = () => {
         const { reqQty } = data;
         data.reqQty = Number(reqQty);
         data.toolId = id;
+        data.status = 'pending';
         const newQty = available - (data.reqQty);
         // console.log('New QTY', newQty);
         // console.log(data);
@@ -35,7 +36,7 @@ const Purchase = () => {
                 itemInfo.available = newQty;
                 let newInfo = itemInfo;
                 delete newInfo._id;
-                // console.log(newInfo);
+                // Updating Stock Data
                 updateQty(data.toolId, newInfo);
                 e.target.reset();
             })
@@ -62,6 +63,7 @@ const Purchase = () => {
     }
     const { available, description, img, moq, price, title } = itemInfo;
 
+    // Function for updating available stock
     async function updateQty(targetID, updatedData) {
         try {
             const response = await axios.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);

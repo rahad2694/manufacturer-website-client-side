@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Spinners from '../shared/Spinners';
 import DeleteModal from './DeleteModal';
@@ -12,6 +13,7 @@ const MyOrders = () => {
     const [open, setOpen] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const [currentId, setCurrentId] = useState('');
+    const navigate = useNavigate();
     // const [intervals, setIntervals] = useState(100000);
     const { isLoading, error, data: orders, refetch } = useQuery(['allToolsData'], () =>
         fetch(`http://localhost:5000/orders/${user?.email}`).then(res =>
@@ -29,7 +31,7 @@ const MyOrders = () => {
                     setIsDelete(false);
                     refetch();
                     // console.log(response);
-                    if(response.data.deletedCount>0){
+                    if (response.data.deletedCount > 0) {
                         toast.success('Successfully Deleted', { id: 'deleted' })
                     }
                 })
@@ -37,7 +39,7 @@ const MyOrders = () => {
                     toast.error(error.message, { id: 'delete-error' });
                 })
         }
-    }, [currentId,isDelete]);
+    }, [currentId, isDelete]);
 
     if (isLoading) {
         return <Spinners></Spinners>
@@ -49,6 +51,9 @@ const MyOrders = () => {
     const handleDelete = async (id) => {
         setOpen(!open);
         setCurrentId(id);
+    }
+    const handlePayment = (id) =>{
+        navigate(`/payment/${id}`)
     }
     return (
         <div>
@@ -87,6 +92,7 @@ const MyOrders = () => {
                                                 {order?.status ? order?.status : 'Not Available'}
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap">
+                                                <button disabled={order.status === 'paid'} onClick={() => handlePayment(order?._id)} className='btn btn-xs text-white mr-3 hover:text-red-500'>{(order.status === 'Paid') ? 'Paid' : 'Pay'}</button>
                                                 {order?.status === 'paid' ? 'Paid' : <button onClick={() => handleDelete(order?._id)} className='btn btn-xs text-white hover:text-red-500'>Cancel</button>}
                                             </td>
                                         </tr>)

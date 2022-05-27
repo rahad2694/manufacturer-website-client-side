@@ -36,7 +36,7 @@ const AllReviews = () => {
                     {
                         allRatings.map(rating => <div key={rating._id} className="mb-12 md:mb-0">
                             <div className="flex justify-center mb-6">
-                                <img alt='' src={rating.photoURL} className="rounded-full shadow-lg w-32" />
+                                <img alt='' src={rating?.photoURL ? rating.photoURL : 'https://previews.123rf.com/images/yupiramos/yupiramos1802/yupiramos180230025/96282371-emoticon-cartoon-face-smiling-happy-character-vector-illustration-sketch-image.jpg'} className="rounded-full shadow-lg w-32" />
                             </div>
                             <h5 className="text-xl font-semibold mb-4">{rating.displayName}</h5>
                             <p className="mb-4">
