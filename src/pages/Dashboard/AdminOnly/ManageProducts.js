@@ -1,34 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-import auth from '../../../firebase.init';
 import UseLoadAllTools from '../../../hooks/UseLoadAllTools';
 import Spinners from '../../shared/Spinners';
 import DeleteModal from '../DeleteModal';
 
 const ManageProducts = () => {
     const [tools, toolLoading, toolError] = UseLoadAllTools();
- 
-    console.log(tools);
-
-    // const [user] = useAuthState(auth);
+    // console.log(tools);
     const [open, setOpen] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const [currentId, setCurrentId] = useState('');
-    const navigate = useNavigate();
-    // const [intervals, setIntervals] = useState(100000);
-    // const { isLoading, error, data: orders, refetch } = useQuery(['allProductsData'], () =>
-    //     fetch(`http://localhost:5000/ordgjjers/${user?.email}`).then(res =>
-    //         res.json()
-    //     ),
-    //     // {
-    //     //     // Refetch the data every second
-    //     //     refetchInterval: intervals,
-    //     // }
-    // )
+  
     useEffect(() => {
         if (isDelete) {
             axios.delete(`http://localhost:5000/deletetool/${currentId}`)
