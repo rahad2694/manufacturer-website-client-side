@@ -38,7 +38,7 @@ const Dashboard = () => {
 
                         {(userInfo?.role==='admin') &&<li><NavLink to="/dashboard/manageproducts" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Manage Products</NavLink></li>}
 
-                        {(userInfo?.role==='admin') &&<li><NavLink to="/dashboard/addreview" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Add Product</NavLink></li>}
+                        {(userInfo?.role==='admin') &&<li><NavLink to="/dashboard/addproduct" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Add Product</NavLink></li>}
                         
                     </ul>
 

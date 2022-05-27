@@ -12,7 +12,7 @@ const RequireAdmin = ({ children }) => {
     const navigate = useNavigate();
     const [role, isLoading, error] = UseAdmin();
 
-    console.log('OUT-', role);
+    // console.log('OUT-', role);
     useEffect(() => {
         if (!role || !user) {
             console.log(role);
