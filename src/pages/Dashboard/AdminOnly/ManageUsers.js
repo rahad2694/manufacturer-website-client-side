@@ -23,30 +23,23 @@ const ManageUsers = () => {
     }, [users]);
     useEffect(() => {
         if (isMakeAdmin) {
-            const data ={role:'admin'};
+            const data = { role: 'admin' };
             try {
                 setIsMakeAdmin(false);
-                const response = axios.put(`http://localhost:5000/makeadmin/${currentId}`, data);
-                // console.log(response);
-                if (response.status === 200) {
-                    toast.success('Successfully Made an Admin!', { id: 'Success' });
-                }
+                axios.put(`http://localhost:5000/makeadmin/${currentId}`, data)
+                    .then(response => {
+                        // console.log(response);
+                        if (response.data.modifiedCount > 0) {
+                            toast.success('Successfully Made an Admin!', { id: 'Success' });
+                        }
+                    })
+                    .catch(error => {
+                        toast.error(error.message, { id: 'make-admin-error' });
+                    })
             }
             catch (error) {
                 toast.error(error.message, { id: 'updating-error' });
             }
-
-            // axios.delete(`http://localhost:5000/delete77tool/${currentId}`)
-            //     .then(response => {
-            //         setIsMakeAdmin(false);
-            //         // console.log(response);
-            //         if (response.data.deletedCount > 0) {
-            //             toast.success('Successfully Deleted', { id: 'deleted' });
-            //         }
-            //     })
-            //     .catch(error => {
-            //         toast.error(error.message, { id: 'delete-error' });
-            //     })
         }
     }, [currentId, isMakeAdmin]);
 
@@ -88,7 +81,7 @@ const ManageUsers = () => {
                                             <td className="text-sm text-gray-900 font-light px-4 py-2 whitespace-nowrap border-r">
                                                 <div className="avatar">
                                                     <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                        <img src={user?.photoURL} alt='User avatar' />
+                                                        <img src={user?.photoURL? user?.photoURL:'https://cdn-icons-png.flaticon.com/512/149/149071.png'} alt='User avatar' />
                                                     </div>
                                                 </div><p className=''>{user?.email}</p>
                                             </td>

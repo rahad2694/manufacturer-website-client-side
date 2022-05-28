@@ -37,6 +37,7 @@ const Purchase = () => {
         data.reqQty = Number(reqQty);
         data.toolId = id;
         data.status = 'pending';
+        data.shipment = 'pending';
         data.price = price;
         data.itemName = title;
         data.img = img;

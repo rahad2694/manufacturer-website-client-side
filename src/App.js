@@ -4,6 +4,7 @@ import './App.css';
 import Blog from './pages/Blogs/Blog';
 import AddReview from './pages/Dashboard/AddReview';
 import AddProduct from './pages/Dashboard/AdminOnly/AddProduct';
+import ManageOrders from './pages/Dashboard/AdminOnly/ManageOrders';
 import ManageProducts from './pages/Dashboard/AdminOnly/ManageProducts';
 import ManageUsers from './pages/Dashboard/AdminOnly/ManageUsers';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -69,6 +70,7 @@ function App() {
           <Route path='manageproducts' element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
           <Route path='addproduct' element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
           <Route path='manageusers' element={<RequireAdmin><ManageUsers></ManageUsers></RequireAdmin>}></Route>
+          <Route path='manageorders' element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>
         </Route>
 
 

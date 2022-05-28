@@ -32,7 +32,7 @@ const Dashboard = () => {
                         {(!userInfo?.role || !userInfo?.role==='admin') && <li><NavLink to="/dashboard/myorders" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>My Orders</NavLink></li>}
                         {(!userInfo?.role || !userInfo?.role==='admin') &&<li><NavLink to="/dashboard/addreview" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Add a Review</NavLink></li>}
 
-                        {(userInfo?.role==='admin') &&<li><NavLink to="/dashboard/addreview" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Manage Orders</NavLink></li>}
+                        {(userInfo?.role==='admin') &&<li><NavLink to="/dashboard/manageorders" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Manage Orders</NavLink></li>}
 
                         {(userInfo?.role==='admin') &&<li><NavLink to="/dashboard/manageusers" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Manage Users</NavLink></li>}
 

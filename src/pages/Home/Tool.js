@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import UseGetUser from '../../hooks/UseGetUser';
@@ -7,13 +7,16 @@ import Spinners from '../shared/Spinners';
 const Tool = ({ tool }) => {
     const { _id, available, description, img, moq, price, title } = tool;
     const [userInfo, isLoading, error] = UseGetUser();
+    useEffect(() => {
+        if (error) {
+            // console.log(error);
+            toast.error(error.message, { id: 'load-error' })
+        }
+    }, [error]);
     if (isLoading) {
         return <Spinners></Spinners>
     }
-    if (error) {
-        console.log(error);
-        toast.error(error.message, { id: 'load-error' })
-    }
+
     return (
         <div className="flex justify-center">
             <div className="rounded-lg shadow-lg bg-white max-w-sm lg:hover:scale-110 transition ease-in-out delay-300 hover:shadow-xl">
@@ -27,7 +30,7 @@ const Tool = ({ tool }) => {
                     <p className='text-md'>Min-Order-Qty: <span className='text-orange-500 font-semibold text-xl'>{moq}</span> pcs</p>
                     <p className='text-md'>Price: <span className='text-orange-500 font-semibold text-xl'>${price}</span> /pc</p>
                     {!userInfo?.role && <Link to={`/purchase/${_id}`} className="btn btn-md  text-white mt-4">Purchase</Link>}
-                    {(userInfo?.role==='admin') && <Link to='/dashboard/manageproducts' className="btn btn-md  text-white mt-4">Manage</Link>}
+                    {(userInfo?.role === 'admin') && <Link to='/dashboard/manageproducts' className="btn btn-md  text-white mt-4">Manage</Link>}
                 </div>
             </div>
         </div>
