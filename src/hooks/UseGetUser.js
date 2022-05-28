@@ -9,7 +9,10 @@ const UseGetUser = () => {
     const [user, loading, userError] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);
     const { isLoading: dbLoading, error: dbError, data: userInfo } = useQuery(['toolsDataLoad'], () =>
-        axios.get(`http://localhost:5000/user/${user?.email}`),
+        fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
+            res.json()
+        ),
+        // await axios.get(`http://localhost:5000/user/${user?.email}`),
         {
             // Refetch the data every second
             refetchInterval: intervals,

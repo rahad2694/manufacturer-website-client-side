@@ -7,12 +7,12 @@ import Spinners from '../shared/Spinners';
 const Tool = ({ tool }) => {
     const { _id, available, description, img, moq, price, title } = tool;
     const [userInfo, isLoading, error] = UseGetUser();
-    useEffect(() => {
-        if (error) {
-            // console.log(error);
-            toast.error(error.message, { id: 'load-error' })
-        }
-    }, [error]);
+    // useEffect(() => {
+    //     if (error) {
+    //         // console.log(error);
+    //         toast.error(error.message, { id: 'load-error' })
+    //     }
+    // }, [error]);
     if (isLoading) {
         return <Spinners></Spinners>
     }
