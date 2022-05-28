@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const TopNav = () => {
     const [user] = useAuthState(auth);
+    let location = useLocation();
+    const pathname = location?.pathname;
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
             <div className="navbar-start">
@@ -54,7 +56,7 @@ const TopNav = () => {
                     toast.success('Successfully Logged Out', { id: 'logout' });
                 }} className="btn btn-sm text-white">Logout</button> : <Link to="/login" className="btn btn-sm text-white">Login</Link>}
 
-                {user?.uid && <label htmlFor="my-drawer-2" className="btn btn-sm text-white drawer-button lg:hidden ml-3"><p className='text-lg'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></p></label>}
+                {(user?.uid && pathname.includes('/dashboard')) && <label htmlFor="my-drawer-2" className="btn btn-sm text-white drawer-button lg:hidden ml-3"><p className='text-lg'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></p></label>}
             </div>
         </div>
     );

@@ -1,8 +1,11 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 import UseGetUser from '../../hooks/UseGetUser';
 
 const Tool = ({ tool }) => {
+    const [user] = useAuthState(auth);
     const { _id, available, description, img, moq, price, title } = tool;
     const [userInfo, isLoading, error] = UseGetUser();
 
@@ -18,7 +21,7 @@ const Tool = ({ tool }) => {
                     <p className='text-md'>Available: <span className='text-orange-500 font-semibold text-xl'>{available}</span> pcs</p>
                     <p className='text-md'>Min-Order-Qty: <span className='text-orange-500 font-semibold text-xl'>{moq}</span> pcs</p>
                     <p className='text-md'>Price: <span className='text-orange-500 font-semibold text-xl'>${price}</span> /pc</p>
-                    {!userInfo?.role && <Link to={`/purchase/${_id}`} className="btn btn-md  text-white mt-4">Purchase</Link>}
+                    {(!user?.uid || !userInfo?.role) && <Link to={`/purchase/${_id}`} className="btn btn-md  text-white mt-4">Purchase</Link>}
                     {(userInfo?.role === 'admin') && <Link to='/dashboard/manageproducts' className="btn btn-md  text-white mt-4">Manage</Link>}
                 </div>
             </div>

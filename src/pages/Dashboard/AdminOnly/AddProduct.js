@@ -10,6 +10,7 @@ const AddProduct = () => {
         data.available = Number(available);
         data.price = Number(price);
         data.moq = Number(moq);
+        console.log(data);
         if (available < moq) {
             toast.error('Minimum Order Qty can not be higher than Stock Qty!', { id: 'moq-error' });
             return;
