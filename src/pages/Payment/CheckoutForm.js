@@ -59,15 +59,12 @@ const CheckoutForm = ({ orderDetails }) => {
         } else {
             setCardError('');
             setPaymentDone(paymentIntent);
-            console.log(paymentIntent);
             let paymentData = {};
             paymentData.ref = paymentIntent.id;
             paymentData.status = 'paid';
 
-            console.log(paymentData);
             //updating payment status in DB
             const response = await axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updateorder/${_id}`, paymentData);
-            console.log(response);
             if (response.status === 200) {
                 toast.success('Payment Done & Recorded!', { id: 'payment-add-success' })
             }

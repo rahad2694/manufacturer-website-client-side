@@ -12,7 +12,6 @@ const ImplementSearch = () => {
     ];
 
     const targetData = data.filter((item) => item.name.includes('jogger'));
-    console.log(targetData);
 
     return <div>
         <h1>Total matched items: {targetData.length}</h1>

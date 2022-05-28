@@ -12,10 +12,8 @@ const RequireAdmin = ({ children }) => {
     const navigate = useNavigate();
     const [role, isLoading, error] = UseAdmin();
 
-    // console.log('OUT-', role);
     useEffect(() => {
         if (!role || !user) {
-            console.log(role);
             localStorage.removeItem('accessToken');
             signOut(auth);
             navigate('/');
@@ -29,7 +27,6 @@ const RequireAdmin = ({ children }) => {
         toast.error(error.message, { id: 'error' });
         return;
     }
-
     return children;
 };
 

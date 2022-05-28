@@ -30,7 +30,6 @@ const ManageProducts = () => {
         return <Spinners></Spinners>
     }
     if (toolError) {
-        console.log(toolError);
         toast.error(toolError.message, { id: 'load-error' })
     }
     const handleDelete = async (id) => {

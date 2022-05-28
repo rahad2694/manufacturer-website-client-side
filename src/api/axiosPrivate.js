@@ -2,7 +2,6 @@ import axios from "axios";
 
 const axiosPrivate = axios.create({});
 
-
 axiosPrivate.interceptors.request.use(function (config) {
     // Do something before request is sent
     if(!config.headers.authorization){
@@ -25,7 +24,6 @@ axiosPrivate.interceptors.response.use(function (response) {
     if(error.response.status === 403){
         //refresh token
         //send to the server
-        
     }
     return Promise.reject(error);
   });

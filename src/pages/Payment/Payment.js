@@ -9,7 +9,6 @@ import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe('pk_test_51L40dAIch1k6RNhZzFzL7j53CjMhlsiN7YRrIUsXDKH9KfY8sJJ3sIcLzcF2C1ZGTHSOP0r9Gf9rJMRWLERBMQ9z00P5u4Hse3');
 
-
 const Payment = () => {
     const { id } = useParams();
     const [orderDetails, setOrderDetails] = useState([]);
@@ -87,7 +86,7 @@ const Payment = () => {
             <div className="card w-96 bg-base-100 shadow-xl mx-auto">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm orderDetails={orderDetails}/>
+                        <CheckoutForm orderDetails={orderDetails} />
                     </Elements>
                 </div>
             </div>

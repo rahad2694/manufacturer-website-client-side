@@ -13,7 +13,6 @@ const MyProfile = () => {
         return <Spinners></Spinners>
     }
     if (error) {
-        console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
     return (

@@ -23,7 +23,6 @@ const AddReview = () => {
                     e.target.reset();
                 })
                 .catch(function (error) {
-                    console.log(error);
                     toast.error(error.message, { id: 'order-error' });
                 });
             e.target.reset();

@@ -1,6 +1,5 @@
 import UseGetUser from "./UseGetUser";
 
-
 const UseAdmin = () => {
     const [userInfo, isLoading, error] = UseGetUser();
 

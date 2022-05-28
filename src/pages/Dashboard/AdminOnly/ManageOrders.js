@@ -40,12 +40,10 @@ const ManageOrders = () => {
         }
 
         if (isShip) {
-            console.log('Yes Ship');
             const shipData = { shipment: 'Delivered' };
             //updating payment status in DB
             axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updateshipment/${currentId}`, shipData)
                 .then(response => {
-                    console.log(response);
                     if (response.status === 200) {
                         toast.success('Shipment Done & Recorded!', { id: 'ship-add-success' })
                     }

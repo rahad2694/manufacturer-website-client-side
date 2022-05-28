@@ -10,12 +10,10 @@ const AddProduct = () => {
         data.available = Number(available);
         data.price = Number(price);
         data.moq = Number(moq);
-        console.log(data);
         if (available < moq) {
             toast.error('Minimum Order Qty can not be higher than Stock Qty!', { id: 'moq-error' });
             return;
         }
-        console.log(data);
         axiosPrivate.post('https://tools-manufacturer-allumin.herokuapp.com/addnewproduct', data)
             .then(function (response) {
                 if (response.data.insertedId) {
@@ -24,7 +22,6 @@ const AddProduct = () => {
                 e.target.reset();
             })
             .catch(function (error) {
-                console.log(error);
                 toast.error(error.message, { id: 'add-error' });
             });
     }

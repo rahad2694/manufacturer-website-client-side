@@ -44,7 +44,6 @@ const MyOrders = () => {
         return <Spinners></Spinners>
     }
     if (error) {
-        console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
     const handleDelete = async (id) => {

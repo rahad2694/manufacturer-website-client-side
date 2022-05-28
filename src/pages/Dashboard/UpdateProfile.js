@@ -17,7 +17,6 @@ const UpdateProfile = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = async (data, e) => {
         data.email = user?.email;
-        console.log(data);
         const { displayName, photoURL } = data;
         try {
             await updateProfile({ displayName, photoURL });
@@ -30,14 +29,12 @@ const UpdateProfile = () => {
         catch (error) {
             toast.error(error.message, { id: 'updating-error' });
         }
-
     }
     if (updating || isLoading) {
         return <Spinners></Spinners>
     }
     if (error || loadError) {
         let erroMsg = error || loadError;
-        console.log(erroMsg);
         toast.error(erroMsg.message, { id: 'update-error' });
     }
     const { education, linkedin, location, phone } = userInfo;

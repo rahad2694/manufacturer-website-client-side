@@ -24,9 +24,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     useEffect(() => {
         if (emailUser || googleUser) {
-
             let user = emailUser || googleUser;
-            console.log(user.user.displayName);
             const url = `https://tools-manufacturer-allumin.herokuapp.com/login`;
             fetch(url, {
                 method: 'POST',

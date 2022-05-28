@@ -7,7 +7,7 @@ import UseGetUser from '../../hooks/UseGetUser';
 const Tool = ({ tool }) => {
     const [user] = useAuthState(auth);
     const { _id, available, description, img, moq, price, title } = tool;
-    const [userInfo, isLoading, error] = UseGetUser();
+    const [userInfo] = UseGetUser();
 
     return (
         <div className="flex justify-center">
