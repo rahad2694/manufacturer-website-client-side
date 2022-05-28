@@ -10,7 +10,7 @@ const ManageOrders = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get('http://localhost:5000/allorders');
+                const response = await axiosPrivate.get('https://tools-manufacturer-allumin.herokuapp.com/allorders');
                 setOrders(response.data);
             }
             catch (error) {
@@ -27,7 +27,7 @@ const ManageOrders = () => {
 
     useEffect(() => {
         if (isDelete) {
-            axiosPrivate.delete(`http://localhost:5000/deleteorderbyadmin/${currentId}`)
+            axiosPrivate.delete(`https://tools-manufacturer-allumin.herokuapp.com/deleteorderbyadmin/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     if (response.data.deletedCount > 0) {
@@ -43,7 +43,7 @@ const ManageOrders = () => {
             console.log('Yes Ship');
             const shipData = { shipment: 'Delivered' };
             //updating payment status in DB
-            axiosPrivate.put(`http://localhost:5000/updateshipment/${currentId}`, shipData)
+            axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updateshipment/${currentId}`, shipData)
                 .then(response => {
                     console.log(response);
                     if (response.status === 200) {

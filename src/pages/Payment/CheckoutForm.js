@@ -15,7 +15,7 @@ const CheckoutForm = ({ orderDetails }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://tools-manufacturer-allumin.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const CheckoutForm = ({ orderDetails }) => {
 
             console.log(paymentData);
             //updating payment status in DB
-            const response = await axiosPrivate.put(`http://localhost:5000/updateorder/${_id}`, paymentData);
+            const response = await axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updateorder/${_id}`, paymentData);
             console.log(response);
             if (response.status === 200) {
                 toast.success('Payment Done & Recorded!', { id: 'payment-add-success' })

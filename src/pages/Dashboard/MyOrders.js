@@ -15,7 +15,7 @@ const MyOrders = () => {
     const [currentId, setCurrentId] = useState('');
     const navigate = useNavigate();
     const { isLoading, error, data: orders, refetch } = useQuery(['allToolsData'], () =>
-        fetch(`http://localhost:5000/orders/${user?.email}`, {
+        fetch(`https://tools-manufacturer-allumin.herokuapp.com/orders/${user?.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -26,7 +26,7 @@ const MyOrders = () => {
     )
     useEffect(() => {
         if (isDelete) {
-            axiosPrivate.delete(`http://localhost:5000/deleteorder/${currentId}`)
+            axiosPrivate.delete(`https://tools-manufacturer-allumin.herokuapp.com/deleteorder/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     refetch();

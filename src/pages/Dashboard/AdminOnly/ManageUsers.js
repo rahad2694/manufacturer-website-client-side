@@ -12,7 +12,7 @@ const ManageUsers = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get('http://localhost:5000/allusers');
+                const response = await axiosPrivate.get('https://tools-manufacturer-allumin.herokuapp.com/allusers');
                 setUsers(response.data);
             }
             catch (error) {
@@ -26,7 +26,7 @@ const ManageUsers = () => {
             const data = { role: 'admin' };
             try {
                 setIsMakeAdmin(false);
-                axiosPrivate.put(`http://localhost:5000/makeadmin/${currentId}`, data)
+                axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/makeadmin/${currentId}`, data)
                     .then(response => {
                         if (response.data.modifiedCount > 0) {
                             toast.success('Successfully Made an Admin!', { id: 'Success' });

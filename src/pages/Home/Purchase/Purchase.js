@@ -14,7 +14,7 @@ const Purchase = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
-        fetch(`http://localhost:5000/item/${id}`, {
+        fetch(`https://tools-manufacturer-allumin.herokuapp.com/item/${id}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -54,7 +54,7 @@ const Purchase = () => {
             toast.error(`Maximum ${available} pcs Can be added in Cart`, { id: 'max_error' });
             return;
         }
-        axiosPrivate.post('http://localhost:5000/placeorder', data)
+        axiosPrivate.post('https://tools-manufacturer-allumin.herokuapp.com/placeorder', data)
             .then(async function (response) {
                 itemInfo.available = newQty;
                 let newInfo = itemInfo;
@@ -71,7 +71,7 @@ const Purchase = () => {
     // Function for updating available stock
     async function updateQty(targetID, updatedData) {
         try {
-            const response = await axiosPrivate.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);
+            const response = await axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updatestock/${targetID}`, updatedData);
             if (response.status === 200) {
                 toast.success('Order placed Successfully.!', { id: 'Success' });
             }

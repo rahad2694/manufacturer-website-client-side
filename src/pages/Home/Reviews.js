@@ -11,7 +11,7 @@ const Reviews = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get('http://localhost:5000/sixratings');
+                const response = await axiosPrivate.get('https://tools-manufacturer-allumin.herokuapp.com/sixratings');
                 setAllRatings(response.data);
             }
             catch (error) {

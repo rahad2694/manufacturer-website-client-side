@@ -15,7 +15,7 @@ const AddProduct = () => {
             return;
         }
         console.log(data);
-        axiosPrivate.post('http://localhost:5000/addnewproduct', data)
+        axiosPrivate.post('https://tools-manufacturer-allumin.herokuapp.com/addnewproduct', data)
             .then(function (response) {
                 if (response.data.insertedId) {
                     toast.success('Successfully Added New Product!', { id: 'add-success' })

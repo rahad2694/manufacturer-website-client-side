@@ -13,7 +13,7 @@ const ManageProducts = () => {
 
     useEffect(() => {
         if (isDelete) {
-            axiosPrivate.delete(`http://localhost:5000/deletetool/${currentId}`)
+            axiosPrivate.delete(`https://tools-manufacturer-allumin.herokuapp.com/deletetool/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     if (response.data.deletedCount > 0) {
