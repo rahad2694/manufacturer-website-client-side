@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
@@ -12,7 +11,6 @@ const UseGetUser = () => {
         fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
             res.json()
         ),
-        // await axios.get(`http://localhost:5000/user/${user?.email}`),
         {
             // Refetch the data every second
             refetchInterval: intervals,

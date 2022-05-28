@@ -5,8 +5,8 @@ import auth from '../../firebase.init';
 import { useUpdateProfile } from 'react-firebase-hooks/auth';
 import Spinners from '../shared/Spinners';
 import toast from 'react-hot-toast';
-import axios from 'axios';
 import UseGetUser from '../../hooks/UseGetUser';
+import axiosPrivate from '../../api/axiosPrivate';
 
 const UpdateProfile = () => {
     const [user] = useAuthState(auth);
@@ -21,7 +21,7 @@ const UpdateProfile = () => {
         const { displayName, photoURL } = data;
         try {
             await updateProfile({ displayName, photoURL });
-            const response = await axios.put('http://localhost:5000/updateuser', data);
+            const response = await axiosPrivate.put('http://localhost:5000/updateuser', data);
             // console.log(response);
             if (response.status === 200) {
                 toast.success('Successfully Updated Profile Information!', { id: 'Success' });

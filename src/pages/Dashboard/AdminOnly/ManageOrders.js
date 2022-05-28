@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../../api/axiosPrivate';
 import Spinners from '../../shared/Spinners';
 import DeleteModal from '../DeleteModal';
 import MakeShipModal from './MakeShipModal';
@@ -11,7 +11,7 @@ const ManageOrders = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get('http://localhost:5000/allorders');
+                const response = await axiosPrivate.get('http://localhost:5000/allorders');
                 setOrders(response.data);
             }
             catch (error) {
@@ -30,7 +30,7 @@ const ManageOrders = () => {
 
     useEffect(() => {
         if (isDelete) {
-            axios.delete(`http://localhost:5000/deleteorderbyadmin/${currentId}`)
+            axiosPrivate.delete(`http://localhost:5000/deleteorderbyadmin/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     // console.log(response);
@@ -48,7 +48,7 @@ const ManageOrders = () => {
             const shipData = {shipment:'Delivered'};
 
             //updating payment status in DB
-            axios.put(`http://localhost:5000/updateshipment/${currentId}`, shipData)
+            axiosPrivate.put(`http://localhost:5000/updateshipment/${currentId}`, shipData)
                 .then(response => {
                     console.log(response);
                     if (response.status === 200) {
@@ -58,18 +58,6 @@ const ManageOrders = () => {
                 .catch(error => {
                     toast.error(error.message, { id: 'ship-error' });
                 })
-
-            // axios.delete(`http://localhost:5000/delety5tetool/${currentId}`)
-            //     .then(response => {
-            //         setIsDelete(false);
-            //         // console.log(response);
-            //         if (response.data.deletedCount > 0) {
-            //             toast.success('Successfully Deleted', { id: 'deleted' });
-            //         }
-            //     })
-            //     .catch(error => {
-            //         toast.error(error.message, { id: 'delete-error' });
-            //     })
         }
     }, [currentId, isDelete, isShip]);
 

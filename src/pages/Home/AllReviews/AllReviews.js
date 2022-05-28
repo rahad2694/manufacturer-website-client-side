@@ -1,8 +1,8 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../../api/axiosPrivate';
 import Spinners from '../../shared/Spinners';
 
 const AllReviews = () => {
@@ -10,7 +10,7 @@ const AllReviews = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get('http://localhost:5000/allratings');
+                const response = await axiosPrivate.get('http://localhost:5000/allratings');
                 setAllRatings(response.data);
             }
             catch (error) {

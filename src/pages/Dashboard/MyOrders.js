@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
 import Spinners from '../shared/Spinners';
 import DeleteModal from './DeleteModal';
@@ -26,7 +26,7 @@ const MyOrders = () => {
     )
     useEffect(() => {
         if (isDelete) {
-            axios.delete(`http://localhost:5000/deleteorder/${currentId}`)
+            axiosPrivate.delete(`http://localhost:5000/deleteorder/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     refetch();

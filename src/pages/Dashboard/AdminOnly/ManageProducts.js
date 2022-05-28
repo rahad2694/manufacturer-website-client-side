@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../../api/axiosPrivate';
 import UseLoadAllTools from '../../../hooks/UseLoadAllTools';
 import Spinners from '../../shared/Spinners';
 import DeleteModal from '../DeleteModal';
@@ -14,7 +14,7 @@ const ManageProducts = () => {
   
     useEffect(() => {
         if (isDelete) {
-            axios.delete(`http://localhost:5000/deletetool/${currentId}`)
+            axiosPrivate.delete(`http://localhost:5000/deletetool/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     // console.log(response);

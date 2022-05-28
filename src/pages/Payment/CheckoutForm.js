@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../api/axiosPrivate';
 
 const CheckoutForm = ({ orderDetails }) => {
     const { _id, orderValue, name, email } = orderDetails;
@@ -69,7 +69,7 @@ const CheckoutForm = ({ orderDetails }) => {
 
             console.log(paymentData);
             //updating payment status in DB
-            const response = await axios.put(`http://localhost:5000/updateorder/${_id}`, paymentData);
+            const response = await axiosPrivate.put(`http://localhost:5000/updateorder/${_id}`, paymentData);
             console.log(response);
             if (response.status === 200) {
                 toast.success('Payment Done & Recorded!', { id: 'payment-add-success' })

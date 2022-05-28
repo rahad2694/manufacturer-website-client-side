@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../../api/axiosPrivate';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -16,7 +16,7 @@ const AddProduct = () => {
             return;
         }
         console.log(data);
-        axios.post('http://localhost:5000/addnewproduct', data)
+        axiosPrivate.post('http://localhost:5000/addnewproduct', data)
             .then(function (response) {
                 // console.log(response);
                 if (response.data.insertedId) {

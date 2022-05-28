@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../api/axiosPrivate';
 import auth from '../../firebase.init';
 
 const AddReview = () => {
@@ -16,7 +16,7 @@ const AddReview = () => {
             data.photoURL = user?.photoURL;
             data.email = user?.email;
             // console.log(data);
-            axios.post('http://localhost:5000/addrating', data)
+            axiosPrivate.post('http://localhost:5000/addrating', data)
                 .then(function (response) {
                     // console.log(response);
                     if(response.data.insertedId){

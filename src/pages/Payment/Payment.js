@@ -1,9 +1,9 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
+import axiosPrivate from '../../api/axiosPrivate';
 import Spinners from '../shared/Spinners';
 import CheckoutForm from './CheckoutForm';
 
@@ -16,7 +16,7 @@ const Payment = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get(`http://localhost:5000/order/${id}`);
+                const response = await axiosPrivate.get(`http://localhost:5000/order/${id}`);
                 setOrderDetails(response.data);
             }
             catch (error) {

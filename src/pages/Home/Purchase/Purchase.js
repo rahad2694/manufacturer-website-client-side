@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
+import axiosPrivate from '../../../api/axiosPrivate';
 import auth from '../../../firebase.init';
 import Spinners from '../../shared/Spinners';
 
@@ -54,7 +54,7 @@ const Purchase = () => {
             return;
         }
         // toast.success(`${data.reqQty} pcs have been added in Order!`, { id: 'cart-success' });
-        axios.post('http://localhost:5000/placeorder', data)
+        axiosPrivate.post('http://localhost:5000/placeorder', data)
             .then(async function (response) {
                 // console.log(response);
                 // toast.success(`Order Placed!`, { id: 'order-success' });
@@ -75,7 +75,7 @@ const Purchase = () => {
     // Function for updating available stock
     async function updateQty(targetID, updatedData) {
         try {
-            const response = await axios.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);
+            const response = await axiosPrivate.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);
             // console.log(response);
             if (response.status === 200) {
                 toast.success('Order placed Successfully.!', { id: 'Success' });

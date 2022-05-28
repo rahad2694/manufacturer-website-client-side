@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import axiosPrivate from '../../../api/axiosPrivate';
 import Spinners from '../../shared/Spinners';
 import MakeAdminModal from './MakeAdminModal';
 
@@ -12,7 +12,7 @@ const ManageUsers = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get('http://localhost:5000/allusers');
+                const response = await axiosPrivate.get('http://localhost:5000/allusers');
                 setUsers(response.data);
             }
             catch (error) {
@@ -26,7 +26,7 @@ const ManageUsers = () => {
             const data = { role: 'admin' };
             try {
                 setIsMakeAdmin(false);
-                axios.put(`http://localhost:5000/makeadmin/${currentId}`, data)
+                axiosPrivate.put(`http://localhost:5000/makeadmin/${currentId}`, data)
                     .then(response => {
                         // console.log(response);
                         if (response.data.modifiedCount > 0) {

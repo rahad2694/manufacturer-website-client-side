@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import axiosPrivate from '../../api/axiosPrivate';
 import Spinners from '../shared/Spinners';
 import Tool from './Tool';
 
@@ -11,7 +11,7 @@ const Tools = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axios.get('http://localhost:5000/tools');
+                const response = await axiosPrivate.get('http://localhost:5000/tools');
                 setTools(response.data);
             }
             catch (error) {
