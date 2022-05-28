@@ -8,17 +8,17 @@ const ProjectTable = () => {
             <table className="table table-zebra w-full">
                 <thead>
                     <tr>
-                        <th>Project Name</th>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Link</th>
+                        <td>Project Name</td>
+                        {/* <td className='hidden lg:flex'>Type</td> */}
+                        <td className='hidden lg:flex'>Description</td>
+                        <td>Link</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>VitaPure</th>
-                        <td>Warehouse Management System</td>
-                        <td className='text-wrap'>
+                        <td>VitaPure</td>
+                        <td className='hidden lg:flex text-green-500'>Warehouse Management System</td>
+                        <td className='text-wrap hidden lg:flex'>
                             <ul>
                                 <li className='text-sm w-3/4'><FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon> Performing CRUD Operation with the help of Mongo DB and Node JS.</li>
                                 <li className='text-sm w-3/4'><FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon> Preventing Unauthorized access using protected route and Json web token.</li>
@@ -26,15 +26,15 @@ const ProjectTable = () => {
                             </ul>
                         </td>
                         <td>
-                            <a className='hover:text-red-500' href="https://vitapure-wms.web.app/">Live Site</a> <br />
-                            <a className='hover:text-red-500' href="https://github.com/rahad2694/warehouse-management-client-side">GitHub</a> <br />
-                            <a className='hover:text-red-500' href="https://github.com/rahad2694/warehouse-management-server-side">Server-side</a>
+                            <a className='hover:text-red-500 text-blue-500' href="https://vitapure-wms.web.app/">Live Site</a> <br />
+                            <a className='hover:text-red-500 text-blue-500' href="https://github.com/rahad2694/warehouse-management-client-side">GitHub</a> <br />
+                            <a className='hover:text-red-500 text-blue-500' href="https://github.com/rahad2694/warehouse-management-server-side">Server-side</a>
                         </td>
                     </tr>
                     <tr>
-                        <th>BD Cycle Repair Shop  </th>
-                        <td>A Company Site with React</td>
-                        <td className='text-wrap'>
+                        <td>BD Cycle<br/>Repair Shop  </td>
+                        <td className='hidden lg:flex text-green-500'>A Company Site with React</td>
+                        <td className='text-wrap hidden lg:flex'>
                             <ul>
                                 <li className='text-sm w-3/4'><FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon> Application of React-Router to navigate to routes without page reload.</li>
                                 <li className='text-sm w-3/4'><FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon> Using Re-Charts Library to show Graphical Performance of the Company.</li>
@@ -42,14 +42,14 @@ const ProjectTable = () => {
                             </ul>
                         </td>
                         <td>
-                            <a className='hover:text-red-500' href="https://rahad-bd-cycle-repair.netlify.app/">Live Site</a> <br />
-                            <a className='hover:text-red-500' href="https://github.com/rahad2694/product-analysis-website">GitHub Repo</a>
+                            <a className='hover:text-red-500 text-blue-500' href="https://rahad-bd-cycle-repair.netlify.app/">Live Site</a> <br />
+                            <a className='hover:text-red-500 text-blue-500' href="https://github.com/rahad2694/product-analysis-website">GitHub Repo</a>
                         </td>
                     </tr>
                     <tr>
-                        <th>To-Do Manager  </th>
-                        <td>A Simple To-Do App</td>
-                        <td className='text-wrap'>
+                        <td>To-Do Manager  </td>
+                        <td className='hidden lg:flex text-green-500'>A Simple To-Do App</td>
+                        <td className='text-wrap hidden lg:flex'>
                             <ul>
                                 <li className='text-sm w-3/4'><FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon> Creating user with credentials and Implementing Firebase Authentication.</li>
                                 <li className='text-sm w-3/4'><FontAwesomeIcon icon={faFileCircleCheck}></FontAwesomeIcon> Using Protected route and navigating user to the intended page.</li>
@@ -57,9 +57,9 @@ const ProjectTable = () => {
                             </ul>
                         </td>
                         <td>
-                            <a className='hover:text-red-500' href="https://simple-to-do-app-ac1be.web.app/">Live Site</a> <br />
-                            <a className='hover:text-red-500' href="https://github.com/rahad2694/simple-to-do-app">GitHub</a> <br />
-                            <a className='hover:text-red-500' href="https://github.com/rahad2694/simple-to-do-app-server">Server-side</a>
+                            <a className='hover:text-red-500 text-blue-500' href="https://simple-to-do-app-ac1be.web.app/">Live Site</a> <br />
+                            <a className='hover:text-red-500 text-blue-500' href="https://github.com/rahad2694/simple-to-do-app">GitHub</a> <br />
+                            <a className='hover:text-red-500 text-blue-500' href="https://github.com/rahad2694/simple-to-do-app-server">Server-side</a>
                         </td>
                     </tr>
                 </tbody>

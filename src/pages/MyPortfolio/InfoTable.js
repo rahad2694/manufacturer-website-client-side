@@ -3,7 +3,7 @@ import React from 'react';
 const InfoTable = () => {
     return (
         <div>
-            <div className="flex flex-col border-2 rounded-lg w-2/4 mx-auto my-10">
+            <div className="flex flex-col border-2 rounded-lg mx-3 md:mx-8 lg:mx-12 my-10">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="overflow-hidden">
@@ -48,7 +48,7 @@ const InfoTable = () => {
                                             <span className="input input-bordered input-error w-full max-w-xs">Email:</span>
                                         </td>
                                         <td className="text-sm font-medium text-gray-900 px-6 py-4">
-                                            <span className="input input-bordered input-error w-full max-w-xs">saiful.rahad26@gmail.com</span>
+                                            <span className="input input-bordered input-error w-full text-xs max-w-sm">saiful.rahad26@gmail.com</span>
                                         </td>
                                     </tr>
                                 </tbody>
