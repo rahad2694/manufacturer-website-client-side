@@ -5,7 +5,12 @@ import { useQuery } from 'react-query';
 const UseLoadAllTools = () => {
     const [intervals, setIntervals] = useState(1000);
     const { isLoading, error, data: tools } = useQuery(['allToolsData'], () =>
-        fetch('http://localhost:5000/alltools').then(res =>
+        fetch('http://localhost:5000/alltools',{
+            method: 'GET',
+            headers: {
+                'authorization' : `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        }).then(res =>
             res.json()
         ),
         {

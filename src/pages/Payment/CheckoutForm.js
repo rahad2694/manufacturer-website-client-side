@@ -18,7 +18,10 @@ const CheckoutForm = ({ orderDetails }) => {
         // Create PaymentIntent as soon as the page loads
         fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
             body: JSON.stringify({ orderValue }),
         })
             .then((res) => res.json())
@@ -86,7 +89,7 @@ const CheckoutForm = ({ orderDetails }) => {
     // console.log(clientSecret);
     return (
         <div>
-            {!((paymentDone?.status === "succeeded")||!orderDetails.status==='paid') && <form onSubmit={handleSubmit}>
+            {!((paymentDone?.status === "succeeded") || !orderDetails.status === 'paid') && <form onSubmit={handleSubmit}>
                 <h2 className="card-title my-3">Enter Card Details</h2>
                 <CardElement
                     options={{
@@ -109,7 +112,7 @@ const CheckoutForm = ({ orderDetails }) => {
                 </button>
             </form>}
             {cardError && <p className='text-xs text-red-500 mt-2'>{cardError}</p>}
-            {(success|| (orderDetails?.status==='paid')) && <>
+            {(success || (orderDetails?.status === 'paid')) && <>
                 <p className='text-xl text-green-500 mt-2'>{success || orderDetails?.status}</p>
                 <p className='text-xs text-green-500 mt-2'>Ref: {paymentDone.id || orderDetails?.ref}</p>
             </>}

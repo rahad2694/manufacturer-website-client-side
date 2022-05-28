@@ -14,7 +14,12 @@ const Purchase = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const { isLoading, error, data: itemInfo } = useQuery(['toolsData', intervals], () =>
-        fetch(`http://localhost:5000/item/${id}`).then(res =>
+        fetch(`http://localhost:5000/item/${id}`, {
+            method: 'GET',
+            headers: {
+                'authorization' : `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        }).then(res =>
             res.json()
         ),
         {
