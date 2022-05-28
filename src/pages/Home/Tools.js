@@ -15,7 +15,6 @@ const Tools = () => {
                 setTools(response.data);
             }
             catch (error) {
-                // console.log(error);
                 toast.error(error.message, { id: 'error-message' })
             }
         }

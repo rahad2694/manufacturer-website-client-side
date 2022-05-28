@@ -1,15 +1,13 @@
 import React from 'react';
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const DeleteModal = ({ open, setOpen, setIsDelete }) => {
-    // const [open, setOpen] = useState(true)
 
     const cancelButtonRef = useRef(null)
-    // console.log(cancelButtonRef);
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>

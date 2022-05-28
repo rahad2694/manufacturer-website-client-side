@@ -20,13 +20,6 @@ const RequireAdmin = ({ children }) => {
             signOut(auth);
             navigate('/');
         }
-        // if (isLoading || loading) {
-        //     return <Spinners></Spinners>
-        // }
-        // if (error) {
-        //     toast.error(error.message, { id: 'error' });
-        //     return;
-        // }
     }, [user, navigate,role]);
 
     if (isLoading || loading) {
@@ -36,13 +29,6 @@ const RequireAdmin = ({ children }) => {
         toast.error(error.message, { id: 'error' });
         return;
     }
-    // if (!isAdmin || !user) {
-    //     console.log(isAdmin);
-    //     localStorage.removeItem('accessToken');
-    //     signOut(auth);
-    //     navigate('/');
-    // }
-
 
     return children;
 };

@@ -3,7 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import auth from "../firebase.init";
 
-
 const UseGetUser = () => {
     const [user, loading, userError] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);

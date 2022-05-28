@@ -8,7 +8,6 @@ import Tool from '../Tool';
 
 const Items = () => {
     const [tools, isLoading, error] = UseLoadAllTools();
-
     if (isLoading) {
         return <Spinners></Spinners>
     }

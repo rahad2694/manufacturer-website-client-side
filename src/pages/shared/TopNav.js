@@ -1,7 +1,7 @@
+import React from 'react';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'firebase/auth';
-import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,6 @@ import auth from '../../firebase.init';
 
 const TopNav = () => {
     const [user] = useAuthState(auth);
-    // console.log(user);
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
             <div className="navbar-start">

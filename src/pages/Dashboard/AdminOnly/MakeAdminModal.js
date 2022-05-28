@@ -6,10 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const MakeAdminModal = ({ open, setOpen, setIsMakeAdmin }) => {
-    // const [open, setOpen] = useState(true)
-
     const cancelButtonRef = useRef(null)
-    // console.log(cancelButtonRef);
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>

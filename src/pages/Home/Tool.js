@@ -1,23 +1,10 @@
-import React, { useEffect } from 'react';
-import toast from 'react-hot-toast';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import UseGetUser from '../../hooks/UseGetUser';
-import Spinners from '../shared/Spinners';
 
 const Tool = ({ tool }) => {
     const { _id, available, description, img, moq, price, title } = tool;
     const [userInfo, isLoading, error] = UseGetUser();
-    // useEffect(() => {
-    //     if (error) {
-    //         // console.log(error);
-    //         toast.error(error.message, { id: 'load-error' })
-    //     }
-    // }, [error]);
-
-
-    // if (isLoading) {
-    //     return <Spinners></Spinners>
-    // }
 
     return (
         <div className="flex justify-center">

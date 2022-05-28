@@ -29,7 +29,6 @@ const Payment = () => {
     if (orderDetails.length === 0) {
         return <Spinners></Spinners>
     }
-    // console.log(orderDetails);
     return (
         <div>
             <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>Please Complete Payment for:</h1>
@@ -87,16 +86,11 @@ const Payment = () => {
 
             <div className="card w-96 bg-base-100 shadow-xl mx-auto">
                 <div className="card-body">
-                    {/* <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div> */}
                     <Elements stripe={stripePromise}>
                         <CheckoutForm orderDetails={orderDetails}/>
                     </Elements>
                 </div>
             </div>
-            
 
             <Link className='btn mb-5 mt-10 text-white hover:text-green-500' to="/dashboard/myorders">Back to My Orders</Link>
         </div>

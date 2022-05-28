@@ -15,12 +15,10 @@ const AddReview = () => {
             data.displayName = user?.displayName;
             data.photoURL = user?.photoURL;
             data.email = user?.email;
-            // console.log(data);
             axiosPrivate.post('http://localhost:5000/addrating', data)
                 .then(function (response) {
-                    // console.log(response);
-                    if(response.data.insertedId){
-                        toast.success('Thank you for your feedback!',{id:'rating-success'})
+                    if (response.data.insertedId) {
+                        toast.success('Thank you for your feedback!', { id: 'rating-success' })
                     }
                     e.target.reset();
                 })
@@ -34,13 +32,10 @@ const AddReview = () => {
             toast.error('Please select your rating.', { id: 'rate-error' });
         }
     }
-
-    // console.log(rated);
     return (
         <div>
             <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>Add a feedback :</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-
                 <div className="form-control w-full max-w-xs mx-auto">
                     <label className="label">
                         <span className="label-text ml-8">Enter Your feedback with Ratings</span>
@@ -58,8 +53,6 @@ const AddReview = () => {
                 </div>
                 <input className="btn btn-primary mt-3" type="submit" value="Add Review" />
             </form>
-
-
         </div>
     );
 };

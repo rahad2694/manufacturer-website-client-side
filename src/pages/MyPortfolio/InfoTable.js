@@ -1,9 +1,8 @@
 import React from 'react';
 
-const   InfoTable = () => {
+const InfoTable = () => {
     return (
         <div>
-
             <div className="flex flex-col border-2 rounded-lg w-2/4 mx-auto my-10">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">

@@ -22,7 +22,6 @@ const UpdateProfile = () => {
         try {
             await updateProfile({ displayName, photoURL });
             const response = await axiosPrivate.put('http://localhost:5000/updateuser', data);
-            // console.log(response);
             if (response.status === 200) {
                 toast.success('Successfully Updated Profile Information!', { id: 'Success' });
             }

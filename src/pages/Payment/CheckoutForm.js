@@ -5,7 +5,6 @@ import axiosPrivate from '../../api/axiosPrivate';
 
 const CheckoutForm = ({ orderDetails }) => {
     const { _id, orderValue, name, email } = orderDetails;
-    // console.log(orderValue)
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
@@ -30,23 +29,18 @@ const CheckoutForm = ({ orderDetails }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
         const card = elements.getElement(CardElement);
 
         if (card == null) {
             return;
         }
-
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
-
-        // console.log('paisis')
         setCardError(error?.message || '');
         setSuccess('');
-        //confirm card oayment
+        //confirm card Payment
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -77,16 +71,12 @@ const CheckoutForm = ({ orderDetails }) => {
             if (response.status === 200) {
                 toast.success('Payment Done & Recorded!', { id: 'payment-add-success' })
             }
-
             setSuccess('Congrats! Payment Done');
         }
-
         if (!stripe || elements) {
             return;
         }
     }
-
-    // console.log(clientSecret);
     return (
         <div>
             {!((paymentDone?.status === "succeeded") || !orderDetails.status === 'paid') && <form onSubmit={handleSubmit}>

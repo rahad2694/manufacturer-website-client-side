@@ -28,7 +28,6 @@ const ManageUsers = () => {
                 setIsMakeAdmin(false);
                 axiosPrivate.put(`http://localhost:5000/makeadmin/${currentId}`, data)
                     .then(response => {
-                        // console.log(response);
                         if (response.data.modifiedCount > 0) {
                             toast.success('Successfully Made an Admin!', { id: 'Success' });
                         }

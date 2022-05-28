@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import axiosPrivate from '../../../api/axiosPrivate';
@@ -7,18 +6,17 @@ import axiosPrivate from '../../../api/axiosPrivate';
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (data, e) => {
-        const{available, price, moq} = data;
+        const { available, price, moq } = data;
         data.available = Number(available);
         data.price = Number(price);
         data.moq = Number(moq);
-        if(available<moq){
-            toast.error('Minimum Order Qty can not be higher than Stock Qty!',{id:'moq-error'});
+        if (available < moq) {
+            toast.error('Minimum Order Qty can not be higher than Stock Qty!', { id: 'moq-error' });
             return;
         }
         console.log(data);
         axiosPrivate.post('http://localhost:5000/addnewproduct', data)
             .then(function (response) {
-                // console.log(response);
                 if (response.data.insertedId) {
                     toast.success('Successfully Added New Product!', { id: 'add-success' })
                 }
@@ -29,12 +27,10 @@ const AddProduct = () => {
                 toast.error(error.message, { id: 'add-error' });
             });
     }
-
     return (
         <div>
             <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>Add a New Product :</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-2 mx-6 md:mx-4 lg:mx-3 py-5 rounded-lg'>
                     <div className="form-control w-full max-w-xs mx-auto">
                         <label className="label hidden md:block">
@@ -84,12 +80,8 @@ const AddProduct = () => {
                         {errors.moq?.type === 'required' && <p className='text-sm text-red-500 mb-1'>Minimum Order Qty is required</p>}
                     </div>
                 </div>
-
-
                 <input className="btn btn-primary mt-5" type="submit" value="Add Product" />
             </form>
-
-
         </div>
     );
 };

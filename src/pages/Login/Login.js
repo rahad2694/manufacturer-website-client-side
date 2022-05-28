@@ -25,7 +25,6 @@ const Login = () => {
     const [user] = useAuthState(auth);
     useEffect(() => {
         if (emailUser || googleUser) {
-            // console.log('I am in')
             let user = emailUser || googleUser;
             const url = `http://localhost:5000/login`;
             fetch(url, {
@@ -53,13 +52,11 @@ const Login = () => {
             toast.error(errorNote?.message, { id: 'error' })
             return <Login></Login>
         }
-    }, [emailError,googleError]);
+    }, [emailError, googleError]);
 
     if (emailLoading || googleLoading) {
         return <div className='mt-40'><Spinners></Spinners></div>
     }
-
-
     return (
         <div>
             <section className="mb-20">
@@ -73,7 +70,6 @@ const Login = () => {
                             <form>
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="text-lg mb-0 mr-4">Sign in with</p>
-
                                     <button
                                         onClick={() => signInWithGoogle()}
                                         type="button"
@@ -94,7 +90,6 @@ const Login = () => {
                                 >
                                     <p className="text-center font-semibold mx-4 mb-0">Or</p>
                                 </div>
-
                                 {/* -- Email input -- */}
                                 <div className="mb-6">
                                     <input
@@ -107,7 +102,6 @@ const Login = () => {
                                         placeholder="Email address"
                                     />
                                 </div>
-
                                 {/* -- Password input -- */}
                                 <div className="mb-6">
                                     <input

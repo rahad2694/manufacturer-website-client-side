@@ -25,7 +25,6 @@ const MyProfile = () => {
             </div>
             <h1 className=''><span className='text-orange-500 text-2xl'>{user?.displayName}</span></h1>
             <div>
-
                 <div className="flex flex-col w-3/4 mx-auto">
                     <div className="overflow-x-auto sm:-mx-2 lg:-mx-3">
                         <div className="py-2 inline-block min-w-full sm:px-3 lg:px-5">
@@ -82,7 +81,6 @@ const MyProfile = () => {
                 </div>
 
                 <Link className='btn text-white my-3' to="/dashboard/updateprofile">Update Profile</Link>
-
             </div>
         </div>
     );

@@ -73,8 +73,6 @@ function App() {
           <Route path='manageorders' element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>
         </Route>
 
-
-
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
 

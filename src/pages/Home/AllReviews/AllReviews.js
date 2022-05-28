@@ -23,15 +23,12 @@ const AllReviews = () => {
     if (allRatings.length === 0) {
         return <Spinners></Spinners>
     }
-
     return (
         <div>
-
             <section className="mb-20 text-gray-700">
                 <div className="text-center md:max-w-xl lg:max-w-3xl mx-auto">
                     <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>All Our Happy Customers</h1>
                 </div>
-
                 <div className="grid md:grid-cols-3 gap-6 lg:gap-12 text-center mx-12">
                     {
                         allRatings.map(rating => <div key={rating._id} className="mb-12 md:mb-0">

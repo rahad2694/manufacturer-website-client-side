@@ -17,7 +17,7 @@ const Purchase = () => {
         fetch(`http://localhost:5000/item/${id}`, {
             method: 'GET',
             headers: {
-                'authorization' : `Bearer ${localStorage.getItem('accessToken')}`
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         }).then(res =>
             res.json()
@@ -31,11 +31,9 @@ const Purchase = () => {
         return <Spinners></Spinners>
     }
     if (error) {
-        // console.log(error);
         toast.error(error.message, { id: 'load-error' })
     }
     const { available, description, img, moq, price, title } = itemInfo;
-
 
     const onSubmit = (data, e) => {
         const { reqQty } = data;
@@ -48,8 +46,6 @@ const Purchase = () => {
         data.img = img;
         data.orderValue = (Number(price) * data.reqQty);
         const newQty = available - (data.reqQty);
-        // console.log('New QTY', newQty);
-        // console.log(data);
         if (data.reqQty < moq) {
             toast.error(`Minimum ${moq} pcs need to added in Cart`, { id: 'moq_error' });
             return;
@@ -58,11 +54,8 @@ const Purchase = () => {
             toast.error(`Maximum ${available} pcs Can be added in Cart`, { id: 'max_error' });
             return;
         }
-        // toast.success(`${data.reqQty} pcs have been added in Order!`, { id: 'cart-success' });
         axiosPrivate.post('http://localhost:5000/placeorder', data)
             .then(async function (response) {
-                // console.log(response);
-                // toast.success(`Order Placed!`, { id: 'order-success' });
                 itemInfo.available = newQty;
                 let newInfo = itemInfo;
                 delete newInfo._id;
@@ -71,22 +64,18 @@ const Purchase = () => {
                 e.target.reset();
             })
             .catch(function (error) {
-                // console.log(error);
                 toast.error(error.message, { id: 'order-error' });
             });
     };
-
 
     // Function for updating available stock
     async function updateQty(targetID, updatedData) {
         try {
             const response = await axiosPrivate.put(`http://localhost:5000/updatestock/${targetID}`, updatedData);
-            // console.log(response);
             if (response.status === 200) {
                 toast.success('Order placed Successfully.!', { id: 'Success' });
             }
         } catch (error) {
-            // console.log(error);
             toast.error(error.message, { id: 'update-error' });
         }
     }
@@ -107,7 +96,6 @@ const Purchase = () => {
                     <p className='text-md'>Price: <span className='text-orange-500 font-semibold text-xl'>${price}</span> /pc</p>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text ml-8">Enter Required Qty:</span>

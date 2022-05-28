@@ -7,17 +7,15 @@ import DeleteModal from '../DeleteModal';
 
 const ManageProducts = () => {
     const [tools, toolLoading, toolError] = UseLoadAllTools();
-    // console.log(tools);
     const [open, setOpen] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
     const [currentId, setCurrentId] = useState('');
-  
+
     useEffect(() => {
         if (isDelete) {
             axiosPrivate.delete(`http://localhost:5000/deletetool/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
-                    // console.log(response);
                     if (response.data.deletedCount > 0) {
                         toast.success('Successfully Deleted', { id: 'deleted' });
                     }
@@ -39,11 +37,9 @@ const ManageProducts = () => {
         setOpen(!open);
         setCurrentId(id);
     }
-
     return (
         <div>
             <h1 className='text-3xl font-bold my-10 italic mx-auto text-gray-700 max-w-4xl'>Manage Products: {tools?.length}</h1>
-
             <div className="flex flex-col w-10/12 mx-auto">
                 <div className="overflow-x-auto sm:-mx-3 lg:-mx-5">
                     <div className="py-2 inline-block min-w-full sm:px-4 lg:px-6">
@@ -66,7 +62,6 @@ const ManageProducts = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     {
                                         tools?.map((tool, index) => <tr key={tool?._id} index={index} className="border-b">
                                             <td className="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 border-r">{index + 1}</td>
@@ -92,9 +87,7 @@ const ManageProducts = () => {
                 </div>
             </div>
 
-
             <DeleteModal open={open} setOpen={setOpen} setIsDelete={setIsDelete}></DeleteModal>
-
         </div>
     );
 };

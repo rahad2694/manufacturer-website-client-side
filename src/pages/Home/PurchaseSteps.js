@@ -18,7 +18,6 @@ const PurchaseSteps = () => {
                             <li className="step">Place Order</li>
                             <li className="step">Receive Product</li>
                         </ul>
-                        {/* <br/> */}
                         <div>
                             <Link to={`${user?.uid?'/tools':'/login'}`} className="btn btn-primary">Get Started</Link>
                         </div>

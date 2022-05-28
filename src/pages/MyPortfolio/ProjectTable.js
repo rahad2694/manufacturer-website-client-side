@@ -6,7 +6,6 @@ const ProjectTable = () => {
     return (
         <div className="overflow-x-auto mx-12 my-10">
             <table className="table table-zebra w-full">
-                {/* <!-- head --> */}
                 <thead>
                     <tr>
                         <th>Project Name</th>
@@ -16,7 +15,6 @@ const ProjectTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* <!-- row 1 --> */}
                     <tr>
                         <th>VitaPure</th>
                         <td>Warehouse Management System</td>
@@ -31,9 +29,8 @@ const ProjectTable = () => {
                             <a className='hover:text-red-500' href="https://vitapure-wms.web.app/">Live Site</a> <br />
                             <a className='hover:text-red-500' href="https://github.com/rahad2694/warehouse-management-client-side">GitHub</a> <br />
                             <a className='hover:text-red-500' href="https://github.com/rahad2694/warehouse-management-server-side">Server-side</a>
-                            </td>
+                        </td>
                     </tr>
-                    {/* <!-- row 2 --> */}
                     <tr>
                         <th>BD Cycle Repair Shop  </th>
                         <td>A Company Site with React</td>
@@ -47,9 +44,8 @@ const ProjectTable = () => {
                         <td>
                             <a className='hover:text-red-500' href="https://rahad-bd-cycle-repair.netlify.app/">Live Site</a> <br />
                             <a className='hover:text-red-500' href="https://github.com/rahad2694/product-analysis-website">GitHub Repo</a>
-                            </td>
+                        </td>
                     </tr>
-                    {/* <!-- row 3 --> */}
                     <tr>
                         <th>To-Do Manager  </th>
                         <td>A Simple To-Do App</td>
@@ -64,9 +60,8 @@ const ProjectTable = () => {
                             <a className='hover:text-red-500' href="https://simple-to-do-app-ac1be.web.app/">Live Site</a> <br />
                             <a className='hover:text-red-500' href="https://github.com/rahad2694/simple-to-do-app">GitHub</a> <br />
                             <a className='hover:text-red-500' href="https://github.com/rahad2694/simple-to-do-app-server">Server-side</a>
-                            </td>
+                        </td>
                     </tr>
-                    
                 </tbody>
             </table>
         </div>
