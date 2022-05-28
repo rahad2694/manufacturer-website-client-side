@@ -13,9 +13,11 @@ const Tool = ({ tool }) => {
     //         toast.error(error.message, { id: 'load-error' })
     //     }
     // }, [error]);
-    if (isLoading) {
-        return <Spinners></Spinners>
-    }
+
+
+    // if (isLoading) {
+    //     return <Spinners></Spinners>
+    // }
 
     return (
         <div className="flex justify-center">

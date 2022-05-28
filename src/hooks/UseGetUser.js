@@ -7,7 +7,7 @@ import auth from "../firebase.init";
 const UseGetUser = () => {
     const [user, loading, userError] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);
-    const { isLoading: dbLoading, error: dbError, data: userInfo } = useQuery(['toolsDataLoad'], () =>
+    const { isLoading: dbLoading, error: dbError, data: userInfo } = useQuery(['toolsDataLoad',intervals], () =>
         fetch(`http://localhost:5000/user/${user?.email}`).then(res =>
             res.json()
         ),
