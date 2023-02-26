@@ -15,7 +15,7 @@ const CheckoutForm = ({ orderDetails }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://tools-manufacturer-allumin.herokuapp.com/create-payment-intent", {
+        fetch("https://manufacturer-website-server-side-i374.onrender.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const CheckoutForm = ({ orderDetails }) => {
             paymentData.status = 'paid';
 
             //updating payment status in DB
-            const response = await axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updateorder/${_id}`, paymentData);
+            const response = await axiosPrivate.put(`https://manufacturer-website-server-side-i374.onrender.com/updateorder/${_id}`, paymentData);
             if (response.status === 200) {
                 toast.success('Payment Done & Recorded!', { id: 'payment-add-success' })
             }

@@ -10,7 +10,7 @@ const Tools = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get('https://tools-manufacturer-allumin.herokuapp.com/tools');
+                const response = await axiosPrivate.get('https://manufacturer-website-server-side-i374.onrender.com/tools');
                 setTools(response.data);
             }
             catch (error) {

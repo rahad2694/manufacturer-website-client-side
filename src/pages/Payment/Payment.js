@@ -15,7 +15,7 @@ const Payment = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get(`https://tools-manufacturer-allumin.herokuapp.com/order/${id}`);
+                const response = await axiosPrivate.get(`https://manufacturer-website-server-side-i374.onrender.com/order/${id}`);
                 setOrderDetails(response.data);
             }
             catch (error) {

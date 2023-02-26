@@ -10,7 +10,7 @@ const ManageOrders = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get('https://tools-manufacturer-allumin.herokuapp.com/allorders');
+                const response = await axiosPrivate.get('https://manufacturer-website-server-side-i374.onrender.com/allorders');
                 setOrders(response.data);
             }
             catch (error) {
@@ -27,7 +27,7 @@ const ManageOrders = () => {
 
     useEffect(() => {
         if (isDelete) {
-            axiosPrivate.delete(`https://tools-manufacturer-allumin.herokuapp.com/deleteorderbyadmin/${currentId}`)
+            axiosPrivate.delete(`https://manufacturer-website-server-side-i374.onrender.com/deleteorderbyadmin/${currentId}`)
                 .then(response => {
                     setIsDelete(false);
                     if (response.data.deletedCount > 0) {
@@ -42,7 +42,7 @@ const ManageOrders = () => {
         if (isShip) {
             const shipData = { shipment: 'Delivered' };
             //updating payment status in DB
-            axiosPrivate.put(`https://tools-manufacturer-allumin.herokuapp.com/updateshipment/${currentId}`, shipData)
+            axiosPrivate.put(`https://manufacturer-website-server-side-i374.onrender.com/updateshipment/${currentId}`, shipData)
                 .then(response => {
                     if (response.status === 200) {
                         toast.success('Shipment Done & Recorded!', { id: 'ship-add-success' })

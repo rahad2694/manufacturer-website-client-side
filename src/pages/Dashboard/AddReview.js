@@ -15,7 +15,7 @@ const AddReview = () => {
             data.displayName = user?.displayName;
             data.photoURL = user?.photoURL;
             data.email = user?.email;
-            axiosPrivate.post('https://tools-manufacturer-allumin.herokuapp.com/addrating', data)
+            axiosPrivate.post('https://manufacturer-website-server-side-i374.onrender.com/addrating', data)
                 .then(function (response) {
                     if (response.data.insertedId) {
                         toast.success('Thank you for your feedback!', { id: 'rating-success' })

@@ -26,7 +26,7 @@ const Login = () => {
     useEffect(() => {
         if (emailUser || googleUser) {
             let user = emailUser || googleUser;
-            const url = `https://tools-manufacturer-allumin.herokuapp.com/login`;
+            const url = `https://manufacturer-website-server-side-i374.onrender.com/login`;
             fetch(url, {
                 method: 'POST',
                 headers: {

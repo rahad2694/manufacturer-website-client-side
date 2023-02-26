@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 const UseLoadAllTools = () => {
     const [intervals, setIntervals] = useState(1000);
     const { isLoading, error, data: tools } = useQuery(['allToolsData'], () =>
-        fetch('https://tools-manufacturer-allumin.herokuapp.com/alltools', {
+        fetch('https://manufacturer-website-server-side-i374.onrender.com/alltools', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -14,7 +14,7 @@ const AddProduct = () => {
             toast.error('Minimum Order Qty can not be higher than Stock Qty!', { id: 'moq-error' });
             return;
         }
-        axiosPrivate.post('https://tools-manufacturer-allumin.herokuapp.com/addnewproduct', data)
+        axiosPrivate.post('https://manufacturer-website-server-side-i374.onrender.com/addnewproduct', data)
             .then(function (response) {
                 if (response.data.insertedId) {
                     toast.success('Successfully Added New Product!', { id: 'add-success' })

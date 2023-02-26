@@ -7,7 +7,7 @@ const UseGetUser = () => {
     const [user, loading, userError] = useAuthState(auth);
     const [intervals, setIntervals] = useState(1000);
     const { isLoading: dbLoading, error: dbError, data: userInfo } = useQuery(['toolsDataLoad', intervals], () =>
-        fetch(`https://tools-manufacturer-allumin.herokuapp.com/user/${user?.email}`, {
+        fetch(`https://manufacturer-website-server-side-i374.onrender.com/user/${user?.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

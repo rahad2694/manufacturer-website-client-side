@@ -20,7 +20,7 @@ const UpdateProfile = () => {
         const { displayName, photoURL } = data;
         try {
             await updateProfile({ displayName, photoURL });
-            const response = await axiosPrivate.put('https://tools-manufacturer-allumin.herokuapp.com/updateuser', data);
+            const response = await axiosPrivate.put('https://manufacturer-website-server-side-i374.onrender.com/updateuser', data);
             if (response.status === 200) {
                 toast.success('Successfully Updated Profile Information!', { id: 'Success' });
             }

@@ -10,7 +10,7 @@ const AllReviews = () => {
     useEffect(() => {
         async function getItems() {
             try {
-                const response = await axiosPrivate.get('https://tools-manufacturer-allumin.herokuapp.com/allratings');
+                const response = await axiosPrivate.get('https://manufacturer-website-server-side-i374.onrender.com/allratings');
                 setAllRatings(response.data);
             }
             catch (error) {
